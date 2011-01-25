@@ -1,0 +1,144 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How We Do Branching &mdash; zamboni v0.8 documentation</title>
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="zamboni v0.8 documentation" href="../../" />
+    <link rel="next" title="Celery" href="../celery/" />
+    <link rel="prev" title="Getting Fancy" href="../advanced-installation/" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex/" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../celery/" title="Celery"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../advanced-installation/" title="Getting Fancy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="how-we-do-branching">
+<span id="branching"></span><h1>How We Do Branching<a class="headerlink" href="#how-we-do-branching" title="Permalink to this headline">¶</a></h1>
+<p>We manage our branches in a similar manner to <a class="reference external" href="http://nvie.com/posts/a-successful-git-branching-model/">nvie&#8217;s branching model</a>.  The
+main difference is that we develop all code on the <a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master">master</a> branch and use the
+<a class="reference external" href="http://github.com/jbalogh/zamboni/tree/next">next</a> branch as the place for staging releases.</p>
+<p>New development happens on <tt class="docutils literal"><span class="pre">master</span></tt>, and is visible on
+<a class="reference external" href="https://preview.addons.mozilla.org">https://preview.addons.mozilla.org</a>.  When we have a code freeze (every one or
+two weeks), the <tt class="docutils literal"><span class="pre">next</span></tt> branch is synced with master and is visible on
+<a class="reference external" href="https://next.addons.mozilla.org">https://next.addons.mozilla.org</a>.</p>
+<p>Tags should be created off of the <tt class="docutils literal"><span class="pre">next</span></tt> branch.  If we need to release a
+hotfix, it should be applied to the <tt class="docutils literal"><span class="pre">next</span></tt> branch and tagged from there.</p>
+<div class="section" id="local-branches">
+<h2>Local Branches<a class="headerlink" href="#local-branches" title="Permalink to this headline">¶</a></h2>
+<p>Most new code is developed in local one-off branches, usually encompassing one
+or two patches to fix a bug.  Upstream doesn&#8217;t care how you do local
+development, but we don&#8217;t want to see a merge commit every time you merge a
+single patch from a branch.  Merge commits make for a noisy history, which is
+not fun to look at and can make it difficult to cherry-pick hotfixes to a
+release branch.  We do like to see merge commits when you&#8217;re committing a set
+of related patches from a feature branch.  The rule of thumb is to rebase and
+use fast-forward merge for single patches or a branch of unrelated bug fixes,
+but to use a merge commit if you have multiple commits that form a cohesive unit.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How We Do Branching</a><ul>
+<li><a class="reference internal" href="#local-branches">Local Branches</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../advanced-installation/"
+                        title="previous chapter">Getting Fancy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../celery/"
+                        title="next chapter">Celery</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/topics/branching.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search/" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex/" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../celery/" title="Celery"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../advanced-installation/" title="Getting Fancy"
+             >previous</a> |</li>
+        <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, The Zamboni Collective.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

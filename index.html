@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to zamboni’s documentation! &mdash; zamboni v0.8 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="zamboni v0.8 documentation" href="#" />
+    <link rel="next" title="Access Control Lists" href="topics/acl/" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex/" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex/" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="topics/acl/" title="Access Control Lists"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">zamboni v0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-zamboni-s-documentation">
+<h1>Welcome to zamboni&#8217;s documentation!<a class="headerlink" href="#welcome-to-zamboni-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="tip-of-the-day">
+<h2>Tip of the Day<a class="headerlink" href="#tip-of-the-day" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="runserver-plus-and-rundevserver">
+<h3>runserver_plus and rundevserver<a class="headerlink" href="#runserver-plus-and-rundevserver" title="Permalink to this headline">¶</a></h3>
+<p>Part of <tt class="docutils literal"><span class="pre">django_extensions</span></tt> is a new <tt class="docutils literal"><span class="pre">manage.py</span></tt> command:
+<tt class="docutils literal"><span class="pre">runserver_plus</span></tt>.</p>
+<p>This hooks in the <tt class="docutils literal"><span class="pre">Werkzeug</span> <span class="pre">debugger</span></tt> when there is a traceback.  This
+debugger is interactive so it makes coding fun.</p>
+<p>Similar to <tt class="docutils literal"><span class="pre">runserver_plus</span></tt> is <tt class="docutils literal"><span class="pre">rundevserver</span></tt> which does all this, and
+outputs all database queries run.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;re just getting started, the <a class="reference internal" href="topics/installation/#installation"><em>install</em></a> docs are the best.</p>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="topics/acl/">Access Control Lists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/advanced-installation/">Getting Fancy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/branching/">How We Do Branching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/celery/">Celery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/contributing/">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/django/">Django, the Good Parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/installation/">Installing Zamboni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/logging/">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/mobile/">Working on the Mobile Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/oauth/">OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/packages/">Packaging in Zamboni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/production/">Zamboni in Production</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/search/">Search (powered by SphinxSearch)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/sphinx/">Sphinx (but not the Search Engine)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/template/">Templating with Jinja2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/testing/">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/translations/">Translating Fields on Models</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="older-tips">
+<h2>Older Tips<a class="headerlink" href="#older-tips" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="gettext-in-javascript">
+<h3>gettext in Javascript<a class="headerlink" href="#gettext-in-javascript" title="Permalink to this headline">¶</a></h3>
+<p>We have gettext in javascript!  Just mark your strings with <tt class="docutils literal"><span class="pre">gettext()</span></tt> or
+<tt class="docutils literal"><span class="pre">ngettext()</span></tt>.  There isn&#8217;t an <tt class="docutils literal"><span class="pre">_</span></tt> alias right now, since underscore.js has
+that.  If we end up with a lot of js translations, we can fix that.  Check it
+out:</p>
+<div class="highlight-python"><pre>cd locale
+./extract-po.py -d javascript
+pybabel init -l en_US -d . -i javascript.pot -D javascript
+perl -pi -e 's/fuzzy//' en_US/LC_MESSAGES/javascript.po
+pybabel compile -d . -D javascript
+open http://0:8000/en-US/jsi18n/</pre>
+</div>
+</div>
+<div class="section" id="git-bisect">
+<h3>Git Bisect<a class="headerlink" href="#git-bisect" title="Permalink to this headline">¶</a></h3>
+<p>Did you break something recently?  Are you wondering which commit started the
+problem?</p>
+<div class="highlight-python"><pre>git bisect start
+git bisect bad
+git bisect good &lt;master&gt;  # Put the known-good commit here.
+git bisect run fab test
+git bisect reset</pre>
+</div>
+<p>Git will churn for a while, running tests, and will eventually tell you where
+you suck.  See the git-bisect man page for more details.</p>
+</div>
+<div class="section" id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Run your tests like this:</p>
+<div class="highlight-python"><pre>python manage.py test --noinput --logging-clear-handlers</pre>
+</div>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--noinput</span></tt> tells Django not to ask about creating or destroying test
+databases.</li>
+<li><tt class="docutils literal"><span class="pre">--loggging-clear-handlers</span></tt> tells nose that you don&#8217;t want to see any
+logging output.  Without this, our debug logging will spew all over your
+console during test runs.  This can be useful for debugging, but it&#8217;s not that
+great most of the time.  See the docs for more stuff you can do with
+<a class="reference external" href="http://somethingaboutorange.com/mrl/projects/nose/0.11.1/plugins/logcapture.html#module-nose.plugins.logcapture" title="(in nose v0.11)"><tt class="xref py py-mod docutils literal"><span class="pre">nose</span> <span class="pre">and</span> <span class="pre">logging</span></tt></a>.</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="building-docs">
+<h3>Building Docs<a class="headerlink" href="#building-docs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>If you&#8217;re working on the docs, use <tt class="docutils literal"><span class="pre">make</span> <span class="pre">loop</span></tt> to keep your built pages
+up-to-date.</li>
+</ul>
+</div>
+<div class="section" id="indices-and-tables">
+<h3>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference internal" href="genindex/"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex/"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search/"><em>Search Page</em></a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to zamboni&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#tip-of-the-day">Tip of the Day</a><ul>
+<li><a class="reference internal" href="#runserver-plus-and-rundevserver">runserver_plus and rundevserver</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#contents">Contents</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#older-tips">Older Tips</a><ul>
+<li><a class="reference internal" href="#gettext-in-javascript">gettext in Javascript</a></li>
+<li><a class="reference internal" href="#git-bisect">Git Bisect</a></li>
+<li><a class="reference internal" href="#running-tests">Running Tests</a></li>
+<li><a class="reference internal" href="#building-docs">Building Docs</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="topics/acl/"
+                        title="next chapter">Access Control Lists</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search/" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex/" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex/" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="topics/acl/" title="Access Control Lists"
+             >next</a> |</li>
+        <li><a href="#">zamboni v0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, The Zamboni Collective.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
