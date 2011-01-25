@@ -231,6 +231,12 @@ developers, included below, is at <a class="reference external" href="http://git
 
 <span class="c"># Run tasks immediately, don&#39;t try using the queue.</span>
 <span class="n">CELERY_ALWAYS_EAGER</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="c"># Add DetectMobileMiddleware for mobile development.</span>
+<span class="n">mwc</span> <span class="o">=</span> <span class="n">MIDDLEWARE_CLASSES</span>
+<span class="n">xmobile</span> <span class="o">=</span> <span class="n">mwc</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;amo.middleware.XMobileMiddleware&#39;</span><span class="p">)</span>
+<span class="n">detect</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;amo.middleware.DetectMobileMiddleware&#39;</span><span class="p">,)</span>
+<span class="n">MIDDLEWARE_CLASSES</span> <span class="o">=</span> <span class="n">mwc</span><span class="p">[:</span><span class="n">xmobile</span><span class="p">]</span> <span class="o">+</span> <span class="n">detect</span> <span class="o">+</span> <span class="n">mwc</span><span class="p">[</span><span class="n">xmobile</span><span class="p">:]</span>
 </pre></div>
 </div>
 <p>I&#8217;m overriding the database parameters from <tt class="docutils literal"><span class="pre">settings.py</span></tt> and then extending
@@ -380,7 +386,7 @@ and mongodb.  Learn more about installing these on the
     </div>
     <div class="footer">
         &copy; Copyright 2009, The Zamboni Collective.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

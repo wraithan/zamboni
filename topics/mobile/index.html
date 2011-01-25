@@ -68,6 +68,13 @@ I added another <cite>mz</cite> alias for the mobile domain:</p>
 <span class="n">MOBILE_SITE_URL</span> <span class="o">=</span> <span class="s">&#39;http://</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">MOBILE_DOMAIN</span>
 </pre></div>
 </div>
+<p>Add <cite>DetectMobileMiddleware</cite> to your <cite>settings_local.py</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">mwc</span> <span class="o">=</span> <span class="n">MIDDLEWARE_CLASSES</span>
+<span class="n">xmobile</span> <span class="o">=</span> <span class="n">mwc</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;amo.middleware.XMobileMiddleware&#39;</span><span class="p">)</span>
+<span class="n">detect</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;amo.middleware.DetectMobileMiddleware&#39;</span><span class="p">,)</span>
+<span class="n">MIDDLEWARE_CLASSES</span> <span class="o">=</span> <span class="n">mwc</span><span class="p">[:</span><span class="n">xmobile</span><span class="p">]</span> <span class="o">+</span> <span class="n">detect</span> <span class="o">+</span> <span class="n">mwc</span><span class="p">[</span><span class="n">xmobile</span><span class="p">:]</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -133,7 +140,7 @@ I added another <cite>mz</cite> alias for the mobile domain:</p>
     </div>
     <div class="footer">
         &copy; Copyright 2009, The Zamboni Collective.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>

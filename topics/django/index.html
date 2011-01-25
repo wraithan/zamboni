@@ -60,7 +60,7 @@ learn about Django.  These aren&#8217;t your normal docs.  They&#8217;re useful.
 the <a class="reference external" href="http://docs.djangoproject.com/en/dev/intro/tutorial01/">tutorial</a>, or
 jump into some other part that interests you.  My awesomebar loves these pages:</p>
 <blockquote>
-<ul class="simple">
+<div><ul class="simple">
 <li><a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/models/querysets/">Querysets</a></li>
 <li><a class="reference external" href="http://docs.djangoproject.com/en/dev/ref/models/fields/">Model Fields</a></li>
 <li><a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/cache/">Caching</a></li>
@@ -69,7 +69,7 @@ jump into some other part that interests you.  My awesomebar loves these pages:<
 <li><a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/http/urls/">Urls</a></li>
 <li><a class="reference external" href="http://docs.djangoproject.com/en/dev/topics/forms/">Forms</a></li>
 </ul>
-</blockquote>
+</div></blockquote>
 <p>I&#8217;m not going to go into detail on anything that&#8217;s covered in the docs, since
 they do it better.</p>
 <div class="section" id="csrf">
@@ -79,7 +79,8 @@ was improved by embedding <tt class="docutils literal"><span class="pre">{%</spa
 middleware to rewrite HTML strings.  But since we&#8217;re using Jinja for templating,
 that doesn&#8217;t work.</p>
 <p>Instead, use</p>
-<div class="highlight-python"><pre>{{ csrf() }}</pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">csrf</span><span class="p">()</span> <span class="p">}}</span>
+</pre></div>
 </div>
 <p>inside templates to embed the CSRF token Django expects.  See
 <a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/apps/admin/templates/admin/flagged_addon_list.html">apps/admin/templates/admin/flagged_addon_list.html</a> for an example.</p>
@@ -182,7 +183,7 @@ extensions.</p>
     </div>
     <div class="footer">
         &copy; Copyright 2009, The Zamboni Collective.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.4.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
     </div>
   </body>
 </html>
