@@ -53,22 +53,22 @@
             
   <div class="section" id="working-on-the-mobile-site">
 <span id="mobile"></span><h1>Working on the Mobile Site<a class="headerlink" href="#working-on-the-mobile-site" title="Permalink to this headline">¶</a></h1>
-<p>The mobile version of amo expects to be served through <cite>MOBILE_DOMAIN</cite> (the
-normal site is served through <cite>DOMAIN</cite>).</p>
+<p>The mobile version of amo expects to be served through <tt class="docutils literal"><span class="pre">MOBILE_DOMAIN</span></tt> (the
+normal site is served through <tt class="docutils literal"><span class="pre">DOMAIN</span></tt>).</p>
 <div class="section" id="defining-domains">
 <h2>Defining domains<a class="headerlink" href="#defining-domains" title="Permalink to this headline">¶</a></h2>
-<p>In <cite>/etc/hosts</cite> I have localhost (<cite>127.0.0.1</cite>) aliased to <cite>z</cite> for brevity. Then
-I added another <cite>mz</cite> alias for the mobile domain:</p>
+<p>In <tt class="docutils literal"><span class="pre">etc/hosts</span></tt> I have localhost (<tt class="docutils literal"><span class="pre">127.0.0.1</span></tt>) aliased to <tt class="docutils literal"><span class="pre">z</span></tt> for brevity. Then
+I added another <tt class="docutils literal"><span class="pre">mz</span></tt> alias for the mobile domain:</p>
 <div class="highlight-python"><pre>127.0.0.1   localhost z mz</pre>
 </div>
-<p>I let zamboni know about all this in <cite>settings_local.py</cite>:</p>
+<p>I let zamboni know about all this in <tt class="docutils literal"><span class="pre">settings_local.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">DOMAIN</span> <span class="o">=</span> <span class="s">&#39;z&#39;</span>
 <span class="n">SITE_URL</span> <span class="o">=</span> <span class="s">&#39;http://</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">DOMAIN</span>
 <span class="n">MOBILE_DOMAIN</span> <span class="o">=</span> <span class="s">&#39;mz&#39;</span>
 <span class="n">MOBILE_SITE_URL</span> <span class="o">=</span> <span class="s">&#39;http://</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">MOBILE_DOMAIN</span>
 </pre></div>
 </div>
-<p>Add <cite>DetectMobileMiddleware</cite> to your <cite>settings_local.py</cite>:</p>
+<p>Add <tt class="docutils literal"><span class="pre">DetectMobileMiddleware</span></tt> to your <tt class="docutils literal"><span class="pre">settings_local.py</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">mwc</span> <span class="o">=</span> <span class="n">MIDDLEWARE_CLASSES</span>
 <span class="n">xmobile</span> <span class="o">=</span> <span class="n">mwc</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;amo.middleware.XMobileMiddleware&#39;</span><span class="p">)</span>
 <span class="n">detect</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;amo.middleware.DetectMobileMiddleware&#39;</span><span class="p">,)</span>
