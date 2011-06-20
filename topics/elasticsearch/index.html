@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working on the Mobile Site &mdash; zamboni v0.8 documentation</title>
+    <title>elasticsearch &mdash; zamboni v0.8 documentation</title>
     <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="zamboni v0.8 documentation" href="../../" />
-    <link rel="next" title="OAuth" href="../oauth/" />
-    <link rel="prev" title="Logging" href="../logging/" /> 
+    <link rel="next" title="Installing Zamboni" href="../installation/" />
+    <link rel="prev" title="Django, the Good Parts" href="../django/" /> 
   </head>
   <body>
     <div class="related">
@@ -37,10 +37,10 @@
           <a href="../../py-modindex/" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../oauth/" title="OAuth"
+          <a href="../installation/" title="Installing Zamboni"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../logging/" title="Logging"
+          <a href="../django/" title="Django, the Good Parts"
              accesskey="P">previous</a> |</li>
         <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
       </ul>
@@ -51,10 +51,17 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="working-on-the-mobile-site">
-<span id="mobile"></span><h1>Working on the Mobile Site<a class="headerlink" href="#working-on-the-mobile-site" title="Permalink to this headline">¶</a></h1>
-<p>Use <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/">https://addons.mozilla.org/en-US/firefox/addon/user-agent-switcher/</a> to get
-a Fennec user agent and the mobile detection middleware will do the rest.</p>
+  <div class="section" id="elasticsearch">
+<span id="id1"></span><h1>elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h1>
+<p>Installation:</p>
+<div class="highlight-python"><pre>brew install elasticsearch  # or whatever your package manager is called.</pre>
+</div>
+<p>Indexing:</p>
+<div class="highlight-python"><pre>django cron reindex_addons</pre>
+</div>
+<p>The reindex job uses celery to parallelize indexing. Running the job multiple
+times will replace old index items with a new document.</p>
+<p>The index is maintained incrementally through post_save and post_delete hooks.</p>
 </div>
 
 
@@ -64,14 +71,14 @@ a Fennec user agent and the mobile detection middleware will do the rest.</p>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../logging/"
-                        title="previous chapter">Logging</a></p>
+  <p class="topless"><a href="../django/"
+                        title="previous chapter">Django, the Good Parts</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../oauth/"
-                        title="next chapter">OAuth</a></p>
+  <p class="topless"><a href="../installation/"
+                        title="next chapter">Installing Zamboni</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../../_sources/topics/mobile.txt"
+    <li><a href="../../_sources/topics/elasticsearch.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -101,10 +108,10 @@ a Fennec user agent and the mobile detection middleware will do the rest.</p>
           <a href="../../py-modindex/" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="../oauth/" title="OAuth"
+          <a href="../installation/" title="Installing Zamboni"
              >next</a> |</li>
         <li class="right" >
-          <a href="../logging/" title="Logging"
+          <a href="../django/" title="Django, the Good Parts"
              >previous</a> |</li>
         <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
       </ul>

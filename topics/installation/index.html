@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="zamboni v0.8 documentation" href="../../" />
     <link rel="next" title="Logging" href="../logging/" />
-    <link rel="prev" title="Django, the Good Parts" href="../django/" /> 
+    <link rel="prev" title="elasticsearch" href="../elasticsearch/" /> 
   </head>
   <body>
     <div class="related">
@@ -40,7 +40,7 @@
           <a href="../logging/" title="Logging"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../django/" title="Django, the Good Parts"
+          <a href="../elasticsearch/" title="elasticsearch"
              accesskey="P">previous</a> |</li>
         <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
       </ul>
@@ -197,8 +197,10 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># cleared every time you restart the server, and memcached is what we run in</span>
 <span class="c"># production.</span>
 <span class="c"># CACHE_BACKEND = &#39;caching.backends.memcached://localhost:11211?timeout=500&#39;</span>
-<span class="c"># CACHE_BACKEND = &#39;caching.backends.locmem://&#39;</span>
-<span class="n">CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;dummy://&#39;</span>
+<span class="n">CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;caching.backends.locmem://&#39;</span>
+<span class="c"># Some cache is required for CSRF to work. Dummy will allow some functionality,</span>
+<span class="c"># but won&#39;t allow you to login.</span>
+<span class="c"># CACHE_BACKEND = &#39;dummy://&#39;</span>
 
 <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
@@ -212,6 +214,8 @@ developers, included below, is at <a class="reference external" href="http://git
     <span class="p">},</span>
 <span class="p">}</span>
 
+<span class="c"># Skip indexing ES to speed things up?</span>
+<span class="n">SKIP_SEARCH_INDEX</span> <span class="o">=</span> <span class="bp">False</span>
 
 <span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="n">HAS_SYSLOG</span> <span class="o">=</span> <span class="bp">False</span>
@@ -232,11 +236,15 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># Run tasks immediately, don&#39;t try using the queue.</span>
 <span class="n">CELERY_ALWAYS_EAGER</span> <span class="o">=</span> <span class="bp">True</span>
 
-<span class="c"># Add DetectMobileMiddleware for mobile development.</span>
-<span class="n">mwc</span> <span class="o">=</span> <span class="n">MIDDLEWARE_CLASSES</span>
-<span class="n">xmobile</span> <span class="o">=</span> <span class="n">mwc</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;amo.middleware.XMobileMiddleware&#39;</span><span class="p">)</span>
-<span class="n">detect</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;amo.middleware.DetectMobileMiddleware&#39;</span><span class="p">,)</span>
-<span class="n">MIDDLEWARE_CLASSES</span> <span class="o">=</span> <span class="n">mwc</span><span class="p">[:</span><span class="n">xmobile</span><span class="p">]</span> <span class="o">+</span> <span class="n">detect</span> <span class="o">+</span> <span class="n">mwc</span><span class="p">[</span><span class="n">xmobile</span><span class="p">:]</span>
+<span class="c"># Disables custom routing in settings.py so that tasks actually run.</span>
+<span class="n">CELERY_ROUTES</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c"># paths for images, not necessary for dev</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+
+<span class="c"># The user id to use when logging in tasks. You should set this to a user that</span>
+<span class="c"># exists in your site.</span>
+<span class="c"># TASK_USER_ID = 1</span>
 </pre></div>
 </div>
 <p>I&#8217;m overriding the database parameters from <tt class="docutils literal"><span class="pre">settings.py</span></tt> and then extending
@@ -246,11 +254,7 @@ you want it.</p>
 </div>
 <div class="section" id="database">
 <h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
-<p>If you have access, ask us how to get a copy of the production database.  We&#8217;re
-still working out how to get useful data for outside contributors.</p>
-<p>Let Django sync up the database schema for you:</p>
-<div class="highlight-python"><pre>./manage.py syncdb --noinput</pre>
-</div>
+<p>You can get a testing database from <a class="reference external" href="https://landfill.addons.allizom.org/db/">https://landfill.addons.allizom.org/db/</a>.</p>
 </div>
 <div class="section" id="run-the-server">
 <h2>Run the Server<a class="headerlink" href="#run-the-server" title="Permalink to this headline">¶</a></h2>
@@ -295,7 +299,7 @@ zamboni&#8217;s tests:</p>
 <div class="section" id="advanced-installation">
 <span id="advanced-install"></span><h2>Advanced Installation<a class="headerlink" href="#advanced-installation" title="Permalink to this headline">¶</a></h2>
 <p>In production we use things like memcached, rabbitmq + celery, sphinx, redis,
-and mongodb.  Learn more about installing these on the
+and LESS.  Learn more about installing these on the
 <a class="reference internal" href="../advanced-installation/"><em>Getting Fancy</em></a> page.</p>
 </div>
 </div>
@@ -339,8 +343,8 @@ and mongodb.  Learn more about installing these on the
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../django/"
-                        title="previous chapter">Django, the Good Parts</a></p>
+  <p class="topless"><a href="../elasticsearch/"
+                        title="previous chapter">elasticsearch</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../logging/"
                         title="next chapter">Logging</a></p>
@@ -379,7 +383,7 @@ and mongodb.  Learn more about installing these on the
           <a href="../logging/" title="Logging"
              >next</a> |</li>
         <li class="right" >
-          <a href="../django/" title="Django, the Good Parts"
+          <a href="../elasticsearch/" title="elasticsearch"
              >previous</a> |</li>
         <li><a href="../../">zamboni v0.8 documentation</a> &raquo;</li> 
       </ul>
