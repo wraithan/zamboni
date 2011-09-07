@@ -57,11 +57,31 @@
 <div class="highlight-python"><pre>brew install elasticsearch  # or whatever your package manager is called.</pre>
 </div>
 <p>Indexing:</p>
-<div class="highlight-python"><pre>django cron reindex_addons</pre>
+<div class="highlight-python"><pre>django cron reindex_addons  # Index all the add-ons.</pre>
 </div>
 <p>The reindex job uses celery to parallelize indexing. Running the job multiple
 times will replace old index items with a new document.</p>
 <p>The index is maintained incrementally through post_save and post_delete hooks.</p>
+<p>Setting up other indexes:</p>
+<div class="highlight-python"><pre>django cron reindex_collections  # Index all the collections.
+
+django cron reindex_users  # Index all the users.
+
+django cron compatibility_report  # Set up the compatibility index.
+
+django index_stats  # Index all the update and download counts.</pre>
+</div>
+<div class="section" id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>We use a custom analyzer for indexing add-on names since they&#8217;re a little
+different from normal text. To get the same results as our servers, put this in
+your elasticsearch.yml (available at
+<a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/scripts/elasticsearch/elasticsearch.yml">scripts/elasticsearch/elasticsearch.yml</a>):</p>
+<div class="highlight-python"><pre>.. literalinclude:: /scripts/elasticsearch/elasticsearch.yml</pre>
+</div>
+<p>If you don&#8217;t do this your results will be slightly different, but you probably
+won&#8217;t notice.</p>
+</div>
 </div>
 
 
@@ -70,6 +90,14 @@ times will replace old index items with a new document.</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../../">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">elasticsearch</a><ul>
+<li><a class="reference internal" href="#settings">Settings</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="../django/"
                         title="previous chapter">Django, the Good Parts</a></p>
