@@ -76,8 +76,29 @@ django index_stats  # Index all the update and download counts.</pre>
 <p>We use a custom analyzer for indexing add-on names since they&#8217;re a little
 different from normal text. To get the same results as our servers, put this in
 your elasticsearch.yml (available at
-<a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/scripts/elasticsearch/elasticsearch.yml">scripts/elasticsearch/elasticsearch.yml</a>):</p>
-<div class="highlight-python"><pre>.. literalinclude:: /scripts/elasticsearch/elasticsearch.yml</pre>
+<a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/scripts/elasticsearch/elasticsearch.yml">scripts/elasticsearch/elasticsearch.yml</a>)</p>
+<div class="highlight-python"><pre>cluster:
+  name: wooyeah
+
+path:
+  logs: /usr/local/var/log
+  data: /usr/local/var/data
+
+index:
+  analysis:
+    analyzer:
+      standardPlusWordDelimiter:
+        type: custom
+        tokenizer: standard
+        filter: [standard, wordDelim, lowercase, stop, dict]
+    filter:
+      wordDelim:
+        type: word_delimiter
+        preserve_original: true
+      dict:
+        type: dictionary_decompounder
+        word_list: [cool, iris, fire, bug, flag, fox, grease, monkey, flash, block, forecast, screen, grab, cookie, auto, fill, text, all, so, think, mega, upload, download, video, map, spring, fix, input, clip, fly, lang, up, down, persona, css, html, all, http, ball, firefox, bookmark, chat, zilla, edit, menu, menus, status, bar, with, easy, sync, search, google, time, window, js, super, scroll, title, close, undo, user, inspect, inspector, browser, context, dictionary, mail, button, url, password, secure, image, new, tab, delete, click, name, smart, down, manager, open, query, net, link, blog, this, color, select, key, keys, foxy, translate, word]
+</pre>
 </div>
 <p>If you don&#8217;t do this your results will be slightly different, but you probably
 won&#8217;t notice.</p>
