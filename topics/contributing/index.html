@@ -61,12 +61,12 @@ way.</p>
 <h2>The Perfect Git Configuration<a class="headerlink" href="#the-perfect-git-configuration" title="Permalink to this headline">¶</a></h2>
 <p>We&#8217;re going to talk about two git repositories:</p>
 <ul class="simple">
-<li><em>origin</em> will be the main zamboni repo at <a class="reference external" href="http://github.com/jbalogh/zamboni">http://github.com/jbalogh/zamboni</a>.</li>
+<li><em>origin</em> will be the main zamboni repo at <a class="reference external" href="http://github.com/mozilla/zamboni">http://github.com/mozilla/zamboni</a>.</li>
 <li><em>mine</em> will be your fork at <a class="reference external" href="http://github.com/:user/zamboni">http://github.com/:user/zamboni</a>.</li>
 </ul>
 <p>There should be something like this in your <tt class="docutils literal"><span class="pre">.git/config</span></tt> already:</p>
 <div class="highlight-python"><pre>[remote "origin"]
-    url = git://github.com/jbalogh/zamboni.git
+    url = git://github.com/mozilla/zamboni.git
     fetch = +refs/heads/*:refs/remotes/origin/*</pre>
 </div>
 <p>Now we&#8217;ll set up your master to pull directly from the upstream zamboni:</p>

@@ -90,9 +90,8 @@ if you&#8217;re running a recent version, you can <a class="reference external" 
 <div class="section" id="use-the-source">
 <h2>Use the Source<a class="headerlink" href="#use-the-source" title="Permalink to this headline">¶</a></h2>
 <p>Grab zamboni from github with:</p>
-<div class="highlight-python"><pre>git clone --recursive git://github.com/jbalogh/zamboni.git
+<div class="highlight-python"><pre>git clone --recursive git://github.com/mozilla/zamboni.git
 cd zamboni
-git clone --recursive git://github.com/jbalogh/zamboni-lib.git vendor
 svn co http://svn.mozilla.org/addons/trunk/site/app/locale locale</pre>
 </div>
 <p><tt class="docutils literal"><span class="pre">zamboni.git</span></tt> is all the source code.  <tt class="docutils literal"><span class="pre">zamboni-lib.git</span></tt> is all of our
@@ -178,7 +177,7 @@ things you need to configure locally.  All your local settings go into
 </pre></div>
 </div>
 <p>at the top of your <tt class="docutils literal"><span class="pre">settings_local.py</span></tt>.  The settings template for
-developers, included below, is at <a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/docs/settings/settings_local.dev.py">docs/settings/settings_local.dev.py</a>.</p>
+developers, included below, is at <a class="reference external" href="http://github.com/mozilla/zamboni/tree/master/docs/settings/settings_local.dev.py">docs/settings/settings_local.dev.py</a>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
@@ -196,11 +195,19 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># You want one of the caching backends.  Dummy won&#39;t do any caching, locmem is</span>
 <span class="c"># cleared every time you restart the server, and memcached is what we run in</span>
 <span class="c"># production.</span>
-<span class="c"># CACHE_BACKEND = &#39;caching.backends.memcached://localhost:11211?timeout=500&#39;</span>
-<span class="n">CACHE_BACKEND</span> <span class="o">=</span> <span class="s">&#39;caching.backends.locmem://&#39;</span>
-<span class="c"># Some cache is required for CSRF to work. Dummy will allow some functionality,</span>
-<span class="c"># but won&#39;t allow you to login.</span>
-<span class="c"># CACHE_BACKEND = &#39;dummy://&#39;</span>
+<span class="c">#CACHES = {</span>
+<span class="c">#    &#39;default&#39;: {</span>
+<span class="c">#        &#39;BACKEND&#39;: &#39;django.core.cache.backends.memcached.Memcached&#39;,</span>
+<span class="c">#        &#39;LOCATION&#39;: &#39;localhost:11211&#39;,</span>
+<span class="c">#    }</span>
+<span class="c">#}</span>
+<span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;BACKEND&#39;</span><span class="p">:</span> <span class="s">&#39;django.core.cache.backends.locmem.LocMemCache&#39;</span><span class="p">,</span>
+        <span class="s">&#39;LOCATION&#39;</span><span class="p">:</span> <span class="s">&#39;zamboni&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c"># Caching is required for CSRF to work, please do not use the dummy cache.</span>
 
 <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>

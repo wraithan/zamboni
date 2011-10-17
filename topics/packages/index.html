@@ -56,14 +56,14 @@
 <p>There are two ways of getting packages for zamboni.  The first is to install
 everything using pip.  We have our packages separated into three files:</p>
 <dl class="docutils">
-<dt><a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/requirements/compiled.txt">requirements/compiled.txt</a></dt>
+<dt><a class="reference external" href="http://github.com/mozilla/zamboni/tree/master/requirements/compiled.txt">requirements/compiled.txt</a></dt>
 <dd>All packages that require (or go faster with) compilation.  These can&#8217;t be
 distributed cross-platform, so they need to be installed through your
 system&#8217;s package manager or pip.</dd>
-<dt><a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/requirements/prod.txt">requirements/prod.txt</a></dt>
+<dt><a class="reference external" href="http://github.com/mozilla/zamboni/tree/master/requirements/prod.txt">requirements/prod.txt</a></dt>
 <dd>The minimal set of packages you need to run zamboni in production.  You
 also need to get <tt class="docutils literal"><span class="pre">requirements/compiled.txt</span></tt>.</dd>
-<dt><a class="reference external" href="http://github.com/jbalogh/zamboni/tree/master/requirements/dev.txt">requirements/dev.txt</a></dt>
+<dt><a class="reference external" href="http://github.com/mozilla/zamboni/tree/master/requirements/dev.txt">requirements/dev.txt</a></dt>
 <dd>All the packages needed for running tests and development servers.  This
 automatically includes <tt class="docutils literal"><span class="pre">requirements/prod.txt</span></tt>.</dd>
 </dl>
@@ -78,7 +78,7 @@ automatically includes <tt class="docutils literal"><span class="pre">requiremen
 <p>The other method is to use the /vendor library of all packages and
 repositories.  These are maintained by Hudson in the zamboni-lib repository.</p>
 <p>Check out the vendor lib with</p>
-<div class="highlight-python"><pre>git clone --recursive git://github.com/jbalogh/zamboni-lib.git ./vendor</pre>
+<div class="highlight-python"><pre>git clone --recursive git://github.com/mozilla/zamboni-lib.git ./vendor</pre>
 </div>
 <p>Once the zamboni-lib repo has been downloaded to <tt class="docutils literal"><span class="pre">/vendor</span></tt>, you only need to
 install the compiled packages.  These can come from your system package manager
