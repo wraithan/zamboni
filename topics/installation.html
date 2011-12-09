@@ -255,6 +255,8 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># The user id to use when logging in tasks. You should set this to a user that</span>
 <span class="c"># exists in your site.</span>
 <span class="c"># TASK_USER_ID = 1</span>
+
+<span class="n">WEBAPPS_RECEIPT_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT</span><span class="p">,</span> <span class="s">&#39;apps/webapps/tests/sample.key&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>I&#8217;m overriding the database parameters from <tt class="docutils literal"><span class="pre">settings.py</span></tt> and then extending
