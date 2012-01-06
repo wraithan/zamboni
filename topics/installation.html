@@ -86,8 +86,13 @@ if you&#8217;re running a recent version, you can <a class="reference external" 
 <span id="osx-packages"></span><h3>On OS X<a class="headerlink" href="#on-os-x" title="Permalink to this headline">¶</a></h3>
 <p>The best solution for installing UNIX tools on OSX is <a class="reference external" href="http://github.com/mxcl/homebrew#readme">Homebrew</a>.</p>
 <p>The following packages will get you set for zamboni:</p>
-<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached</pre>
+<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached swig</pre>
 </div>
+</div>
+<div class="section" id="mysql">
+<h3>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h3>
+<p>You&#8217;ll probably need to <a class="reference internal" href="advanced-installation.html#configure-mysql"><em>configure MySQL after install</em></a>
+(especially on Mac OS X) according to advanced installation.</p>
 </div>
 </div>
 <div class="section" id="use-the-source">
@@ -252,6 +257,10 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># paths for images, not necessary for dev</span>
 <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
 
+<span class="c"># Disable timeout code during development because it uses the signal module</span>
+<span class="c"># which can only run in the main thread. Celery uses threads in dev.</span>
+<span class="n">VALIDATOR_TIMEOUT</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
 <span class="c"># The user id to use when logging in tasks. You should set this to a user that</span>
 <span class="c"># exists in your site.</span>
 <span class="c"># TASK_USER_ID = 1</span>
@@ -328,6 +337,7 @@ and LESS.  Learn more about installing these on the
 <li><a class="reference internal" href="#requirements">Requirements</a><ul>
 <li><a class="reference internal" href="#on-ubuntu">On Ubuntu</a></li>
 <li><a class="reference internal" href="#on-os-x">On OS X</a></li>
+<li><a class="reference internal" href="#mysql">MySQL</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#use-the-source">Use the Source</a></li>

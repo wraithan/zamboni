@@ -56,6 +56,32 @@
             
   <div class="section" id="getting-fancy">
 <span id="advanced-installation"></span><h1>Getting Fancy<a class="headerlink" href="#getting-fancy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mysql">
+<span id="configure-mysql"></span><h2>MySQL<a class="headerlink" href="#mysql" title="Permalink to this headline">¶</a></h2>
+<p>On your dev machine, MySQL probably needs some tweaks. Locate your my.cnf (or create one) then, at the very least, make UTF8 the default encoding:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+<span class="n">character</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">server</span><span class="o">=</span><span class="n">utf8</span>
+</pre></div>
+</div>
+<p>Here are some other helpful settings:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+<span class="n">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">innodb</span>
+<span class="n">transaction</span><span class="o">-</span><span class="n">isolation</span><span class="o">=</span><span class="n">READ</span><span class="o">-</span><span class="n">COMMITTED</span>
+<span class="n">character</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">server</span><span class="o">=</span><span class="n">utf8</span>
+<span class="n">skip</span><span class="o">-</span><span class="n">sync</span><span class="o">-</span><span class="n">frm</span><span class="o">=</span><span class="n">OFF</span>
+<span class="n">innodb_file_per_table</span>
+</pre></div>
+</div>
+<p>On Mac OS X with homebrew, put my.cnf in <tt class="docutils literal"><span class="pre">/usr/local/Cellar/mysql/5.5.15/my.cnf</span></tt> then restart like:</p>
+<div class="highlight-python"><pre>launchctl unload -w ~/Library/LaunchAgents/com.mysql.mysqld.plist
+launchctl load -w ~/Library/LaunchAgents/com.mysql.mysqld.plist</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">some of the options above were renamed between MySQL versions</p>
+</div>
+<p>Here are <a class="reference external" href="http://bonesmoses.org/2011/02/28/mysql-isnt-yoursql/">more tips for optimizing MySQL</a> on your dev machine.</p>
+</div>
 <div class="section" id="memcached">
 <h2>Memcached<a class="headerlink" href="#memcached" title="Permalink to this headline">¶</a></h2>
 <p>We slipped this in with the basic install.  The package was
@@ -160,6 +186,7 @@ able to type &#8220;lessc&#8221;, and have &#8220;lessc: no input files&#8221; r
   <h3><a href="../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Getting Fancy</a><ul>
+<li><a class="reference internal" href="#mysql">MySQL</a></li>
 <li><a class="reference internal" href="#memcached">Memcached</a></li>
 <li><a class="reference internal" href="#rabbitmq-and-celery">RabbitMQ and Celery</a></li>
 <li><a class="reference internal" href="#sphinx">Sphinx</a></li>
