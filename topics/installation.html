@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="top" title="zamboni 0.8 documentation" href="../index.html" />
     <link rel="next" title="Logging" href="logging.html" />
-    <link rel="prev" title="elasticsearch" href="elasticsearch.html" /> 
+    <link rel="prev" title="Installing Zamboni In A VM With Vagrant" href="install-with-vagrant.html" /> 
   </head>
   <body>
     <div class="related">
@@ -43,7 +43,7 @@
           <a href="logging.html" title="Logging"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="elasticsearch.html" title="elasticsearch"
+          <a href="install-with-vagrant.html" title="Installing Zamboni In A VM With Vagrant"
              accesskey="P">previous</a> |</li>
         <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
       </ul>
@@ -58,6 +58,11 @@
 <span id="installation"></span><h1>Installing Zamboni<a class="headerlink" href="#installing-zamboni" title="Permalink to this headline">¶</a></h1>
 <p>We&#8217;re going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For less manual work, you can build Zamboni in a
+<a class="reference internal" href="install-with-vagrant.html"><em>virtual machine using vagrant</em></a>.</p>
+</div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
@@ -79,14 +84,14 @@ normal stuff, make sure you&#8217;re getting all those <tt class="docutils liter
 <span id="ubuntu-packages"></span><h3>On Ubuntu<a class="headerlink" href="#on-ubuntu" title="Permalink to this headline">¶</a></h3>
 <p>The following command will install the required development files on Ubuntu or,
 if you&#8217;re running a recent version, you can <a class="reference external" href="apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev">install them automatically</a>:</p>
-<div class="highlight-python"><pre>sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev</pre>
+<div class="highlight-python"><pre>sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig</pre>
 </div>
 </div>
 <div class="section" id="on-os-x">
 <span id="osx-packages"></span><h3>On OS X<a class="headerlink" href="#on-os-x" title="Permalink to this headline">¶</a></h3>
 <p>The best solution for installing UNIX tools on OSX is <a class="reference external" href="http://github.com/mxcl/homebrew#readme">Homebrew</a>.</p>
 <p>The following packages will get you set for zamboni:</p>
-<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached swig</pre>
+<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached openssl swig</pre>
 </div>
 </div>
 <div class="section" id="mysql">
@@ -221,8 +226,8 @@ developers, included below, is at <a class="reference external" href="http://git
     <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;zamboni&#39;</span><span class="p">,</span>
         <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.mysql&#39;</span><span class="p">,</span>
-        <span class="s">&#39;USER&#39;</span><span class="p">:</span> <span class="s">&#39;jbalogh&#39;</span><span class="p">,</span>
-        <span class="s">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s">&#39;xxx&#39;</span><span class="p">,</span>
+        <span class="s">&#39;USER&#39;</span><span class="p">:</span> <span class="s">&#39;root&#39;</span><span class="p">,</span>
+        <span class="s">&#39;PASSWORD&#39;</span><span class="p">:</span> <span class="s">&#39;&#39;</span><span class="p">,</span>
         <span class="s">&#39;OPTIONS&#39;</span><span class="p">:</span>  <span class="p">{</span><span class="s">&#39;init_command&#39;</span><span class="p">:</span> <span class="s">&#39;SET storage_engine=InnoDB&#39;</span><span class="p">},</span>
         <span class="s">&#39;TEST_CHARSET&#39;</span><span class="p">:</span> <span class="s">&#39;utf8&#39;</span><span class="p">,</span>
         <span class="s">&#39;TEST_COLLATION&#39;</span><span class="p">:</span> <span class="s">&#39;utf8_general_ci&#39;</span><span class="p">,</span>
@@ -288,13 +293,17 @@ configured your settings and database, you&#8217;re good to go.  Run the server:
 <div class="section" id="create-a-user">
 <h2>Create a user<a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h2>
 <p>To log into your dev site, you can click the login / register link and login
-with Browser ID just like on the live site. However, if you want to grant yourself admin privileges there are some additional steps. After registering, find your user record:</p>
+with Browser ID just like on the live site. However, if you want to grant
+yourself admin privileges there are some additional steps. After registering,
+find your user record:</p>
 <div class="highlight-python"><pre>mysql&gt; select * from auth_user order by date_joined desc limit 1\G</pre>
 </div>
 <p>Then make yourself a superuser like this:</p>
 <div class="highlight-python"><pre>mysql&gt; update auth_user set is_superuser=1, is_staff=1 where id=&lt;id from above&gt;;</pre>
 </div>
-<p>Next, you&#8217;ll need to set a password. Do that by clicking &#8220;I forgot my password&#8221; on the login screen then go back to the shell you started your dev server in. You&#8217;ll see the email message with the password reset link in stdout.</p>
+<p>Next, you&#8217;ll need to set a password. Do that by clicking &#8220;I forgot my password&#8221;
+on the login screen then go back to the shell you started your dev server in.
+You&#8217;ll see the email message with the password reset link in stdout.</p>
 </div>
 <div class="section" id="contact">
 <h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
@@ -377,8 +386,8 @@ and LESS.  Learn more about installing these on the
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="elasticsearch.html"
-                        title="previous chapter">elasticsearch</a></p>
+  <p class="topless"><a href="install-with-vagrant.html"
+                        title="previous chapter">Installing Zamboni In A VM With Vagrant</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="logging.html"
                         title="next chapter">Logging</a></p>
@@ -417,7 +426,7 @@ and LESS.  Learn more about installing these on the
           <a href="logging.html" title="Logging"
              >next</a> |</li>
         <li class="right" >
-          <a href="elasticsearch.html" title="elasticsearch"
+          <a href="install-with-vagrant.html" title="Installing Zamboni In A VM With Vagrant"
              >previous</a> |</li>
         <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
       </ul>
