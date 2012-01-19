@@ -131,7 +131,7 @@ vagrant suspend</pre>
 <h2>Updating Zamboni Code<a class="headerlink" href="#updating-zamboni-code" title="Permalink to this headline">¶</a></h2>
 <p>To sync your repository with upstream changes, just update the code using git:</p>
 <div class="highlight-python"><pre>cd zamboni
-git pull &amp;&amp; git submodule --quiet &amp;&amp; git submodule update --init --recursive</pre>
+git pull &amp;&amp; git submodule sync --quiet &amp;&amp; git submodule update --init --recursive</pre>
 </div>
 <p>Next, rebuild your VM so that any new requirements are installed and any new
 DB migration scripts are run.</p>
@@ -165,13 +165,6 @@ Your <tt class="docutils literal"><span class="pre">custom.pp</span></tt> file i
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p>You might see an error like this when first running vagrant:</p>
-<div class="highlight-python"><pre>/Library/Ruby/Gems/1.8/gems/net-ssh-2.1.4/lib/net/ssh/key_factory.rb:38:in `read': Permission denied - /Library/Ruby/Gems/1.8/gems/vagrant-0.8.8/keys/vagrant (Errno::EACCES)</pre>
-</div>
-<p>It was fixed in <a class="reference external" href="https://github.com/mitchellh/vagrant/issues/580">issue 580</a>
-but until that is released you can fix it with this:</p>
-<div class="highlight-python"><pre>sudo chmod 644 /opt/local/lib/ruby/gems/1.8/gems/vagrant-0.8.10/keys/vagrant</pre>
-</div>
 <p>If you have already set up Zamboni with a custom <tt class="docutils literal"><span class="pre">settings_local.py</span></tt> file
 then be sure your database credentials match the defaults:</p>
 <div class="highlight-python"><pre>'NAME': 'zamboni',
@@ -179,6 +172,7 @@ then be sure your database credentials match the defaults:</p>
 'PASSWORD': '',
 ...</pre>
 </div>
+<p>Otherwise you&#8217;ll probably see database errors.</p>
 </div>
 </div>
 
