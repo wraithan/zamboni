@@ -7,6 +7,11 @@ Installing Zamboni
 We're going to use all the hottest tools to set up a nice environment.  Skip
 steps at your own peril. Here we go!
 
+.. note::
+
+    For less manual work, you can build Zamboni in a
+    :doc:`virtual machine using vagrant <install-with-vagrant>`.
+
 
 Requirements
 ------------
@@ -33,7 +38,7 @@ The following command will install the required development files on Ubuntu or,
 if you're running a recent version, you can `install them automatically
 <apt:python-dev,python-virtualenv,libxml2-dev,libxslt1-dev,libmysqlclient-dev,libmemcached-dev>`_::
 
-    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev
+    sudo aptitude install python-dev python-virtualenv libxml2-dev libxslt1-dev libmysqlclient-dev libmemcached-dev libssl-dev swig
 
 
 .. _osx-packages:
@@ -44,9 +49,16 @@ The best solution for installing UNIX tools on OSX is Homebrew_.
 
 The following packages will get you set for zamboni::
 
-    brew install python libxml2 mysql libmemcached
+    brew install python libxml2 mysql libmemcached openssl swig
 
 .. _Homebrew: http://github.com/mxcl/homebrew#readme
+
+
+MySQL
+~~~~~
+
+You'll probably need to :ref:`configure MySQL after install <configure-mysql>`
+(especially on Mac OS X) according to advanced installation.
 
 
 Use the Source
@@ -184,6 +196,25 @@ If you've gotten the system requirements, downloaded ``zamboni`` and
 configured your settings and database, you're good to go.  Run the server::
 
     ./manage.py runserver 0.0.0.0:8000
+
+
+Create a user
+-------------
+
+To log into your dev site, you can click the login / register link and login
+with Browser ID just like on the live site. However, if you want to grant
+yourself admin privileges there are some additional steps. After registering,
+find your user record::
+
+    mysql> select * from auth_user order by date_joined desc limit 1\G
+
+Then make yourself a superuser like this::
+
+    mysql> update auth_user set is_superuser=1, is_staff=1 where id=<id from above>;
+
+Next, you'll need to set a password. Do that by clicking "I forgot my password"
+on the login screen then go back to the shell you started your dev server in.
+You'll see the email message with the password reset link in stdout.
 
 
 Contact
