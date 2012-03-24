@@ -8,44 +8,46 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installing Zamboni In A VM With Vagrant &mdash; zamboni 0.8 documentation</title>
+    <title>Installing In A VM With Vagrant &mdash; zamboni 0.8 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
+        URL_ROOT:    '../../',
         VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="zamboni 0.8 documentation" href="../index.html" />
-    <link rel="next" title="Installing Zamboni" href="installation.html" />
-    <link rel="prev" title="elasticsearch" href="elasticsearch.html" /> 
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="zamboni 0.8 documentation" href="../../index.html" />
+    <link rel="up" title="Install Zamboni" href="index.html" />
+    <link rel="next" title="Get Started With Vagrant On Windows" href="vagrant-on-windows.html" />
+    <link rel="prev" title="Installing Zamboni" href="installation.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installing Zamboni"
+          <a href="vagrant-on-windows.html" title="Get Started With Vagrant On Windows"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="elasticsearch.html" title="elasticsearch"
+          <a href="installation.html" title="Installing Zamboni"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -54,14 +56,20 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="installing-zamboni-in-a-vm-with-vagrant">
-<h1>Installing Zamboni In A VM With Vagrant<a class="headerlink" href="#installing-zamboni-in-a-vm-with-vagrant" title="Permalink to this headline">¶</a></h1>
-<p>Instead of <a class="reference internal" href="installation.html"><em>installing Zamboni piecemeal</em></a>
-you can set it up in a virtual machine. This is an ideal way to
-get up and running quickly and to keep your dev system clean.</p>
+  <div class="section" id="installing-in-a-vm-with-vagrant">
+<h1>Installing In A VM With Vagrant<a class="headerlink" href="#installing-in-a-vm-with-vagrant" title="Permalink to this headline">¶</a></h1>
+<p>Instead of <a class="reference internal" href="installation.html"><em>installing Zamboni piecemeal</em></a> you can set it up
+in a virtual machine. This is an ideal way to get up and running quickly and to
+keep your dev system clean. At the time of this writing there are a few
+outstanding Vagrant / VirtualBox bugs that have blocked some people. But if it
+works, let us know!</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>To get started, you&#8217;ll need:</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">we have a <a class="reference internal" href="vagrant-on-windows.html"><em>special section to help you get started on Windows!</em></a></p>
+</div>
+<p>To get started on Mac OS X or Linux you&#8217;ll need:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference external" href="http://git-scm.com/">git</a><ul>
@@ -196,9 +204,9 @@ then be sure your database credentials match the defaults:</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Installing Zamboni In A VM With Vagrant</a><ul>
+<li><a class="reference internal" href="#">Installing In A VM With Vagrant</a><ul>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#get-the-source">Get The Source</a></li>
 <li><a class="reference internal" href="#build-the-vm">Build the VM</a></li>
@@ -213,19 +221,19 @@ then be sure your database credentials match the defaults:</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="elasticsearch.html"
-                        title="previous chapter">elasticsearch</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="installation.html"
-                        title="next chapter">Installing Zamboni</a></p>
+                        title="previous chapter">Installing Zamboni</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="vagrant-on-windows.html"
+                        title="next chapter">Get Started With Vagrant On Windows</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/topics/install-with-vagrant.txt"
+    <li><a href="../../_sources/topics/install-zamboni/install-with-vagrant.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
@@ -244,18 +252,19 @@ then be sure your database credentials match the defaults:</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="installation.html" title="Installing Zamboni"
+          <a href="vagrant-on-windows.html" title="Get Started With Vagrant On Windows"
              >next</a> |</li>
         <li class="right" >
-          <a href="elasticsearch.html" title="elasticsearch"
+          <a href="installation.html" title="Installing Zamboni"
              >previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

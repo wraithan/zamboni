@@ -10,42 +10,44 @@
     
     <title>Installing Zamboni &mdash; zamboni 0.8 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
+        URL_ROOT:    '../../',
         VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="zamboni 0.8 documentation" href="../index.html" />
-    <link rel="next" title="Logging" href="logging.html" />
-    <link rel="prev" title="Installing Zamboni In A VM With Vagrant" href="install-with-vagrant.html" /> 
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="zamboni 0.8 documentation" href="../../index.html" />
+    <link rel="up" title="Install Zamboni" href="index.html" />
+    <link rel="next" title="Installing In A VM With Vagrant" href="install-with-vagrant.html" />
+    <link rel="prev" title="Install Zamboni" href="index.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="logging.html" title="Logging"
+          <a href="install-with-vagrant.html" title="Installing In A VM With Vagrant"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="install-with-vagrant.html" title="Installing Zamboni In A VM With Vagrant"
+          <a href="index.html" title="Install Zamboni"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -91,7 +93,7 @@ if you&#8217;re running a recent version, you can <a class="reference external" 
 <span id="osx-packages"></span><h3>On OS X<a class="headerlink" href="#on-os-x" title="Permalink to this headline">¶</a></h3>
 <p>The best solution for installing UNIX tools on OSX is <a class="reference external" href="http://github.com/mxcl/homebrew#readme">Homebrew</a>.</p>
 <p>The following packages will get you set for zamboni:</p>
-<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached openssl swig</pre>
+<div class="highlight-python"><pre>brew install python libxml2 mysql libmemcached openssl swig jpeg</pre>
 </div>
 </div>
 <div class="section" id="mysql">
@@ -183,15 +185,16 @@ mkvirtualenv with <tt class="docutils literal"><span class="pre">--python</span>
 </div>
 <div class="section" id="settings">
 <span id="example-settings"></span><h2>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Also see the Multiple Sites section below for using settings files to run
+the Add-ons and Marketplace sites side by side.</p>
+</div>
 <p>Most of zamboni is already configured in <tt class="docutils literal"><span class="pre">settings.py</span></tt>, but there&#8217;s some
 things you need to configure locally.  All your local settings go into
-<tt class="docutils literal"><span class="pre">settings_local.py</span></tt>. Make sure you have</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-</div>
-<p>at the top of your <tt class="docutils literal"><span class="pre">settings_local.py</span></tt>.  The settings template for
+<tt class="docutils literal"><span class="pre">settings_local.py</span></tt>.  The settings template for
 developers, included below, is at <a class="reference external" href="http://github.com/mozilla/zamboni/tree/master/docs/settings/settings_local.dev.py">docs/settings/settings_local.dev.py</a>.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">default.settings</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
 <span class="n">TEMPLATE_DEBUG</span> <span class="o">=</span> <span class="n">DEBUG</span>
@@ -270,28 +273,83 @@ developers, included below, is at <a class="reference external" href="http://git
 <span class="c"># exists in your site.</span>
 <span class="c"># TASK_USER_ID = 1</span>
 
-<span class="n">WEBAPPS_RECEIPT_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT</span><span class="p">,</span> <span class="s">&#39;apps/webapps/tests/sample.key&#39;</span><span class="p">)</span>
+<span class="n">WEBAPPS_RECEIPT_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ROOT</span><span class="p">,</span> <span class="s">&#39;mkt/webapps/tests/sample.key&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>I&#8217;m overriding the database parameters from <tt class="docutils literal"><span class="pre">settings.py</span></tt> and then extending
 <tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt> and <tt class="docutils literal"><span class="pre">MIDDLEWARE_CLASSES</span></tt> to include the <a class="reference external" href="http://github.com/robhudson/django-debug-toolbar">Django Debug
 Toolbar</a>.  It&#8217;s awesome,
 you want it.</p>
+<p>Any file that looks like <tt class="docutils literal"><span class="pre">settings_local*</span></tt> is for local use only; it will be
+ignored by git.</p>
 </div>
 <div class="section" id="database">
 <h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
-<p>You can get a testing database from <a class="reference external" href="https://landfill.addons.allizom.org/db/">https://landfill.addons.allizom.org/db/</a>.</p>
+<p>Instead of running <tt class="docutils literal"><span class="pre">manage.py</span> <span class="pre">syncdb</span></tt> your best bet is to grab a snapshot of
+our production DB which has been redacted and pruned for development use.
+Development snapshots are hosted over at
+<a class="reference external" href="https://landfill.addons.allizom.org/db/">https://landfill.addons.allizom.org/db/</a></p>
+<p>Here are some shell commands to pull down the latest snapshot and set it up:</p>
+<div class="highlight-python"><pre>export DB_NAME=zamboni
+export DB_USER=zamboni
+mysqladmin -uroot create $DB_NAME
+mysql -uroot -B -e'GRANT ALL PRIVILEGES ON $DB_NAME.* TO $DB_USER@localhost'
+wget --no-check-certificate -P /tmp https://landfill.addons.allizom.org/db/landfill-`date +%Y-%m-%d`.sql.gz
+zcat /tmp/landfill-`date +%Y-%m-%d`.sql.gz | mysql -u$DB_USER $DB_NAME
+# Optionally, you can remove the landfill site notice:
+mysql -uroot -e"delete from config where \`key\`='site_notice'" $DB_NAME</pre>
+</div>
+</div>
+<div class="section" id="database-migrations">
+<h2>Database Migrations<a class="headerlink" href="#database-migrations" title="Permalink to this headline">¶</a></h2>
+<p>Each incremental change we add to the database is done with a versioned SQL
+(and sometimes Python) file. To keep your local DB fresh and up to date, run
+migrations like this:</p>
+<div class="highlight-python"><pre>./vendor/src/schematic/schematic migrations</pre>
+</div>
+<p>More info on schematic: <a class="reference external" href="https://github.com/jbalogh/schematic">https://github.com/jbalogh/schematic</a></p>
+</div>
+<div class="section" id="multiple-sites">
+<h2>Multiple sites<a class="headerlink" href="#multiple-sites" title="Permalink to this headline">¶</a></h2>
+<p>We now run multiple sites off the zamboni code base. The current sites are:</p>
+<ul class="simple">
+<li><em>default</em> the Add-ons site at <a class="reference external" href="https://addons.mozilla.org/">https://addons.mozilla.org/</a></li>
+<li><em>mkt</em> the Mozilla Marketplace at <a class="reference external" href="https://marketplace.mozilla.org/">https://marketplace.mozilla.org/</a></li>
+</ul>
+<p>There are modules in zamboni for each of these base settings to make minor
+modifications to settings, url, templates and so on. Start by copying the
+template from <tt class="docutils literal"><span class="pre">settings/settings_local.dev.py</span></tt> into a custom file.</p>
+<p>To run the Add-ons site, make a <tt class="docutils literal"><span class="pre">settings_local_amo.py</span></tt> file with this import
+header:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">default.settings</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>Or to run the Marketplace site, make a <tt class="docutils literal"><span class="pre">settings_local_mkt.py</span></tt> file with
+these imports:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">mkt.settings</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="run-the-server">
 <h2>Run the Server<a class="headerlink" href="#run-the-server" title="Permalink to this headline">¶</a></h2>
 <p>If you&#8217;ve gotten the system requirements, downloaded <tt class="docutils literal"><span class="pre">zamboni</span></tt> and
 <tt class="docutils literal"><span class="pre">zamboni-lib</span></tt>, set up your virtualenv with the compiled packages, and
-configured your settings and database, you&#8217;re good to go.  Run the server:</p>
-<div class="highlight-python"><pre>./manage.py runserver 0.0.0.0:8000</pre>
+configured your settings and database, you&#8217;re good to go.</p>
+<p>To choose which site you want to run, use the <cite>settings</cite> command line
+argument to pass in a local settings file you created above.</p>
+<div class="section" id="run-the-add-ons-server">
+<h3>Run The Add-ons Server<a class="headerlink" href="#run-the-add-ons-server" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>./manage.py runserver --settings=settings_local_amo 0.0.0.0:8000</pre>
 </div>
 </div>
-<div class="section" id="create-a-user">
-<h2>Create a user<a class="headerlink" href="#create-a-user" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-the-marketplace-server">
+<h3>Run The Marketplace Server<a class="headerlink" href="#run-the-marketplace-server" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python"><pre>./manage.py runserver --settings=settings_local_mkt 0.0.0.0:8000</pre>
+</div>
+</div>
+</div>
+<div class="section" id="create-an-admin-user">
+<h2>Create an Admin User<a class="headerlink" href="#create-an-admin-user" title="Permalink to this headline">¶</a></h2>
 <p>To log into your dev site, you can click the login / register link and login
 with Browser ID just like on the live site. However, if you want to grant
 yourself admin privileges there are some additional steps. After registering,
@@ -305,16 +363,14 @@ find your user record:</p>
 on the login screen then go back to the shell you started your dev server in.
 You&#8217;ll see the email message with the password reset link in stdout.</p>
 </div>
-<div class="section" id="contact">
-<h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
-<p>Come talk to us on <a class="reference external" href="irc://irc.mozilla.org/amo">irc://irc.mozilla.org/amo</a> if you have questions, issues, or
-compliments.</p>
-</div>
 <div class="section" id="testing">
 <h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference internal" href="testing.html#testing"><em>Testing</em></a> page has more info, but here&#8217;s the quick way to run
-zamboni&#8217;s tests:</p>
-<div class="highlight-python"><pre>./manage.py test</pre>
+<p>The <a class="reference internal" href="../hacking/testing.html#testing"><em>Testing</em></a> page has more info, but here&#8217;s the quick way to run
+zamboni&#8217;s marketplace tests:</p>
+<div class="highlight-python"><pre>./manage.py test --settings=settings_local_mkt</pre>
+</div>
+<p>Or to run AMO&#8217;s tests:</p>
+<div class="highlight-python"><pre>./manage.py test --settings=settings_local_amo</pre>
 </div>
 </div>
 <div class="section" id="updating">
@@ -328,20 +384,31 @@ zamboni&#8217;s tests:</p>
 <p>We use <a class="reference external" href="http://github.com/jbalogh/schematic/">schematic</a> to run migrations:</p>
 <div class="highlight-python"><pre>./vendor/src/schematic/schematic migrations</pre>
 </div>
-<p>The <a class="reference internal" href="contributing.html"><em>Contributing</em></a> page has more on managing branches.</p>
+<p>The <a class="reference internal" href="../hacking/contributing.html#contributing"><em>Contributing</em></a> page has more on managing branches.</p>
 <p>If you want to pull in the latest locales:</p>
 <div class="highlight-python"><pre>pushd locale &amp;&amp; svn up &amp;&amp; popd</pre>
 </div>
 </div>
+<div class="section" id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Permalink to this headline">¶</a></h2>
+<p>Come talk to us on <a class="reference external" href="irc://irc.mozilla.org/amo">irc://irc.mozilla.org/amo</a> if you have questions, issues, or
+compliments.</p>
+</div>
 <div class="section" id="submitting-a-patch">
 <h2>Submitting a Patch<a class="headerlink" href="#submitting-a-patch" title="Permalink to this headline">¶</a></h2>
-<p>See the <a class="reference internal" href="contributing.html"><em>Contributing</em></a> page.</p>
+<p>See the <a class="reference internal" href="../hacking/contributing.html#contributing"><em>Contributing</em></a> page.</p>
 </div>
 <div class="section" id="advanced-installation">
 <span id="advanced-install"></span><h2>Advanced Installation<a class="headerlink" href="#advanced-installation" title="Permalink to this headline">¶</a></h2>
 <p>In production we use things like memcached, rabbitmq + celery, sphinx, redis,
 and LESS.  Learn more about installing these on the
 <a class="reference internal" href="advanced-installation.html"><em>Getting Fancy</em></a> page.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although we make an effort to keep advanced items as optional installs
+you might need to install some components in order to run tests or start
+up the development server.</p>
+</div>
 </div>
 </div>
 
@@ -351,7 +418,7 @@ and LESS.  Learn more about installing these on the
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Installing Zamboni</a><ul>
 <li><a class="reference internal" href="#requirements">Requirements</a><ul>
@@ -374,11 +441,17 @@ and LESS.  Learn more about installing these on the
 </li>
 <li><a class="reference internal" href="#settings">Settings</a></li>
 <li><a class="reference internal" href="#database">Database</a></li>
-<li><a class="reference internal" href="#run-the-server">Run the Server</a></li>
-<li><a class="reference internal" href="#create-a-user">Create a user</a></li>
-<li><a class="reference internal" href="#contact">Contact</a></li>
+<li><a class="reference internal" href="#database-migrations">Database Migrations</a></li>
+<li><a class="reference internal" href="#multiple-sites">Multiple sites</a></li>
+<li><a class="reference internal" href="#run-the-server">Run the Server</a><ul>
+<li><a class="reference internal" href="#run-the-add-ons-server">Run The Add-ons Server</a></li>
+<li><a class="reference internal" href="#run-the-marketplace-server">Run The Marketplace Server</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-an-admin-user">Create an Admin User</a></li>
 <li><a class="reference internal" href="#testing">Testing</a></li>
 <li><a class="reference internal" href="#updating">Updating</a></li>
+<li><a class="reference internal" href="#contact">Contact</a></li>
 <li><a class="reference internal" href="#submitting-a-patch">Submitting a Patch</a></li>
 <li><a class="reference internal" href="#advanced-installation">Advanced Installation</a></li>
 </ul>
@@ -386,19 +459,19 @@ and LESS.  Learn more about installing these on the
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="install-with-vagrant.html"
-                        title="previous chapter">Installing Zamboni In A VM With Vagrant</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Install Zamboni</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="logging.html"
-                        title="next chapter">Logging</a></p>
+  <p class="topless"><a href="install-with-vagrant.html"
+                        title="next chapter">Installing In A VM With Vagrant</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/topics/installation.txt"
+    <li><a href="../../_sources/topics/install-zamboni/installation.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
@@ -417,18 +490,19 @@ and LESS.  Learn more about installing these on the
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="logging.html" title="Logging"
+          <a href="install-with-vagrant.html" title="Installing In A VM With Vagrant"
              >next</a> |</li>
         <li class="right" >
-          <a href="install-with-vagrant.html" title="Installing Zamboni In A VM With Vagrant"
+          <a href="index.html" title="Install Zamboni"
              >previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

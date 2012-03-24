@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to zamboni’s documentation! &mdash; zamboni 0.8 documentation</title>
+    <title>Welcome to Zamboni’s documentation! &mdash; zamboni 0.8 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="zamboni 0.8 documentation" href="#" />
-    <link rel="next" title="Access Control Lists" href="topics/acl.html" /> 
+    <link rel="next" title="Install Zamboni" href="topics/install-zamboni/index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,7 +39,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="topics/acl.html" title="Access Control Lists"
+          <a href="topics/install-zamboni/index.html" title="Install Zamboni"
              accesskey="N">next</a> |</li>
         <li><a href="#">zamboni 0.8 documentation</a> &raquo;</li> 
       </ul>
@@ -51,54 +51,102 @@
           <div class="body">
             
   <div class="section" id="welcome-to-zamboni-s-documentation">
-<h1>Welcome to zamboni&#8217;s documentation!<a class="headerlink" href="#welcome-to-zamboni-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="tip-of-the-day">
-<h2>Tip of the Day<a class="headerlink" href="#tip-of-the-day" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="runserver-plus-and-rundevserver">
-<h3>runserver_plus and rundevserver<a class="headerlink" href="#runserver-plus-and-rundevserver" title="Permalink to this headline">¶</a></h3>
-<p>Part of <tt class="docutils literal"><span class="pre">django_extensions</span></tt> is a new <tt class="docutils literal"><span class="pre">manage.py</span></tt> command:
-<tt class="docutils literal"><span class="pre">runserver_plus</span></tt>.</p>
-<p>This hooks in the <tt class="docutils literal"><span class="pre">Werkzeug</span> <span class="pre">debugger</span></tt> when there is a traceback.  This
-debugger is interactive so it makes coding fun.</p>
-<p>Similar to <tt class="docutils literal"><span class="pre">runserver_plus</span></tt> is <tt class="docutils literal"><span class="pre">rundevserver</span></tt> which does all this, and
-outputs all database queries run.</p>
-</div>
-</div>
+<h1>Welcome to Zamboni&#8217;s documentation!<a class="headerlink" href="#welcome-to-zamboni-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Zamboni is the codebase for <a class="reference external" href="https://addons.mozilla.org/">https://addons.mozilla.org/</a> and
+<a class="reference external" href="https://marketplace.mozilla.org/">https://marketplace.mozilla.org/</a> ; the source lives at <a class="reference external" href="https://github.com/mozilla/zamboni">https://github.com/mozilla/zamboni</a></p>
+<p>If you want to build a completely different site with all the same Django
+optimizations for security, scalability, L10n, and ease of use, check out
+Mozilla&#8217;s <a class="reference external" href="http://playdoh.readthedocs.org/">Playdoh starter kit</a>.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>If you&#8217;re just getting started, the <a class="reference internal" href="topics/installation.html#installation"><em>install</em></a> docs are the best.</p>
+<p>What are you waiting for?! <a class="reference internal" href="topics/install-zamboni/installation.html#installation"><em>Install Zamboni!</em></a></p>
 </div>
 <div class="section" id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="topics/acl.html">Access Control Lists</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/advanced-installation.html">Getting Fancy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/branching.html">How We Do Branching</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/celery.html">Celery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/contributing.html">Contributing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/django.html">Django, the Good Parts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/elasticsearch.html">elasticsearch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/install-with-vagrant.html">Installing Zamboni In A VM With Vagrant</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/installation.html">Installing Zamboni</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/logging.html">Logging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/mobile.html">Working on the Mobile Site</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/oauth.html">OAuth</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/packages.html">Packaging in Zamboni</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/payments.html">Setting Up Payments for Apps and Add-ons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/production.html">Zamboni in Production</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/search.html">Search (powered by SphinxSearch)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/services.html">Services</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/sphinx.html">Sphinx (but not the Search Engine)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/style.html">Style Guide</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/template.html">Templating with Jinja2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/testing.html">Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="topics/translations.html">Translating Fields on Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/install-zamboni/index.html">Install Zamboni</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/installation.html">Installing Zamboni</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/install-with-vagrant.html">Installing In A VM With Vagrant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/vagrant-on-windows.html">Get Started With Vagrant On Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/advanced-installation.html">Getting Fancy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/celery.html">Celery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/elasticsearch.html">elasticsearch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/install-zamboni/packages.html">Packaging in Zamboni</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/hacking/index.html">Hacking</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/hacking/testing.html">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/hacking/style.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/hacking/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/hacking/branching.html">Push From Master</a></li>
+</ul>
+</li>
 </ul>
 </div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="topics/acl.html">Access Control Lists</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/acl.html#acl-versus-django-permissions">ACL versus Django Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/acl.html#how-permissions-work">How permissions work</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/django.html">Django, the Good Parts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/django.html#csrf">CSRF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/django.html#id2">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/django.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/django.html#migrations">Migrations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/logging.html">Logging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/logging.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/logging.html#using-loggers">Using Loggers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/mobile.html">Working on the Mobile Site</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/oauth.html">OAuth</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/oauth.html#the-oauth-dance">The OAuth Dance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/payments.html">Setting Up Payments for Apps and Add-ons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/payments.html#paypal-sandbox-settings">PayPal Sandbox Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/payments.html#sell-an-app">Sell an App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/payments.html#buy-an-app">Buy an App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/production.html">Zamboni in Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/production.html#getting-requirements">Getting Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/production.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/production.html#setting-up-mod-wsgi">Setting up mod_wsgi</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/search.html">Search (powered by SphinxSearch)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/search.html#production">Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/search.html#testing">Testing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/search.html#addon-criteria-for-being-indexed">Addon criteria for being indexed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/services.html">Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="topics/sphinx.html">Sphinx (but not the Search Engine)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/sphinx.html#sections">Sections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/sphinx.html#sphinx-extras">Sphinx Extras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/sphinx.html#vim">Vim</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/template.html">Templating with Jinja2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/template.html#helpers">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/template.html#context-filters">Context Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/template.html#template-files">Template Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="topics/translations.html">Translating Fields on Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="topics/translations.html#creating-new-translations">Creating New Translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/translations.html#module-translations.fields"><tt class="docutils literal"><span class="pre">translations.fields</span></tt></a></li>
+<li class="toctree-l2"><a class="reference internal" href="topics/translations.html#module-translations.models"><tt class="docutils literal"><span class="pre">translations.models</span></tt></a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section" id="older-tips">
-<h2>Older Tips<a class="headerlink" href="#older-tips" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="gettext-in-javascript">
 <h3>gettext in Javascript<a class="headerlink" href="#gettext-in-javascript" title="Permalink to this headline">¶</a></h3>
 <p>We have gettext in javascript!  Just mark your strings with <tt class="docutils literal"><span class="pre">gettext()</span></tt> or
@@ -170,16 +218,9 @@ up-to-date.</li>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to zamboni&#8217;s documentation!</a><ul>
-<li><a class="reference internal" href="#tip-of-the-day">Tip of the Day</a><ul>
-<li><a class="reference internal" href="#runserver-plus-and-rundevserver">runserver_plus and rundevserver</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">Welcome to Zamboni&#8217;s documentation!</a><ul>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#contents">Contents</a><ul>
-</ul>
-</li>
-<li><a class="reference internal" href="#older-tips">Older Tips</a><ul>
 <li><a class="reference internal" href="#gettext-in-javascript">gettext in Javascript</a></li>
 <li><a class="reference internal" href="#git-bisect">Git Bisect</a></li>
 <li><a class="reference internal" href="#running-tests">Running Tests</a></li>
@@ -192,8 +233,8 @@ up-to-date.</li>
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="topics/acl.html"
-                        title="next chapter">Access Control Lists</a></p>
+  <p class="topless"><a href="topics/install-zamboni/index.html"
+                        title="next chapter">Install Zamboni</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -226,7 +267,7 @@ up-to-date.</li>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="topics/acl.html" title="Access Control Lists"
+          <a href="topics/install-zamboni/index.html" title="Install Zamboni"
              >next</a> |</li>
         <li><a href="#">zamboni 0.8 documentation</a> &raquo;</li> 
       </ul>

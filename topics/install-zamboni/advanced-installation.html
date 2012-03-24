@@ -10,42 +10,44 @@
     
     <title>Getting Fancy &mdash; zamboni 0.8 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
+        URL_ROOT:    '../../',
         VERSION:     '0.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
     </script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <link rel="top" title="zamboni 0.8 documentation" href="../index.html" />
-    <link rel="next" title="How We Do Branching" href="branching.html" />
-    <link rel="prev" title="Access Control Lists" href="acl.html" /> 
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="zamboni 0.8 documentation" href="../../index.html" />
+    <link rel="up" title="Install Zamboni" href="index.html" />
+    <link rel="next" title="Celery" href="celery.html" />
+    <link rel="prev" title="Get Started With Vagrant On Windows" href="vagrant-on-windows.html" /> 
   </head>
   <body>
     <div class="related">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="branching.html" title="How We Do Branching"
+          <a href="celery.html" title="Celery"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="acl.html" title="Access Control Lists"
+          <a href="vagrant-on-windows.html" title="Get Started With Vagrant On Windows"
              accesskey="P">previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -67,7 +69,6 @@ create one) then, at the very least, make UTF8 the default encoding:</p>
 <p>Here are some other helpful settings:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
 <span class="n">default</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">innodb</span>
-<span class="n">transaction</span><span class="o">-</span><span class="n">isolation</span><span class="o">=</span><span class="n">READ</span><span class="o">-</span><span class="n">COMMITTED</span>
 <span class="n">character</span><span class="o">-</span><span class="nb">set</span><span class="o">-</span><span class="n">server</span><span class="o">=</span><span class="n">utf8</span>
 <span class="n">skip</span><span class="o">-</span><span class="n">sync</span><span class="o">-</span><span class="n">frm</span><span class="o">=</span><span class="n">OFF</span>
 <span class="n">innodb_file_per_table</span>
@@ -184,7 +185,7 @@ able to type &#8220;lessc&#8221;, and have &#8220;lessc: no input files&#8221; r
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <h3><a href="../../index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Getting Fancy</a><ul>
 <li><a class="reference internal" href="#mysql">MySQL</a></li>
@@ -202,19 +203,19 @@ able to type &#8220;lessc&#8221;, and have &#8220;lessc: no input files&#8221; r
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="acl.html"
-                        title="previous chapter">Access Control Lists</a></p>
+  <p class="topless"><a href="vagrant-on-windows.html"
+                        title="previous chapter">Get Started With Vagrant On Windows</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="branching.html"
-                        title="next chapter">How We Do Branching</a></p>
+  <p class="topless"><a href="celery.html"
+                        title="next chapter">Celery</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="../_sources/topics/advanced-installation.txt"
+    <li><a href="../../_sources/topics/install-zamboni/advanced-installation.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="../../search.html" method="get">
       <input type="text" name="q" />
       <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
@@ -233,18 +234,19 @@ able to type &#8220;lessc&#8221;, and have &#8220;lessc: no input files&#8221; r
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
+          <a href="../../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
+          <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="branching.html" title="How We Do Branching"
+          <a href="celery.html" title="Celery"
              >next</a> |</li>
         <li class="right" >
-          <a href="acl.html" title="Access Control Lists"
+          <a href="vagrant-on-windows.html" title="Get Started With Vagrant On Windows"
              >previous</a> |</li>
-        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+        <li><a href="../../index.html">zamboni 0.8 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Install Zamboni</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
