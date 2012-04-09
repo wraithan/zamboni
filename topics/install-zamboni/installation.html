@@ -348,6 +348,15 @@ argument to pass in a local settings file you created above.</p>
 </div>
 </div>
 </div>
+<div class="section" id="browser-id">
+<h2>Browser ID<a class="headerlink" href="#browser-id" title="Permalink to this headline">¶</a></h2>
+<p>We use <a class="reference external" href="https://browserid.org/">Browser ID (Persona)</a> to log in and create accounts.
+In order for this to work you need to set <tt class="docutils literal"><span class="pre">SITE_URL</span></tt> in your local
+settings file based on how you run your dev server. Here is an example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">SITE_URL</span> <span class="o">=</span> <span class="s">&#39;http://localhost:8000&#39;</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="create-an-admin-user">
 <h2>Create an Admin User<a class="headerlink" href="#create-an-admin-user" title="Permalink to this headline">¶</a></h2>
 <p>To log into your dev site, you can click the login / register link and login
@@ -448,6 +457,7 @@ up the development server.</p>
 <li><a class="reference internal" href="#run-the-marketplace-server">Run The Marketplace Server</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#browser-id">Browser ID</a></li>
 <li><a class="reference internal" href="#create-an-admin-user">Create an Admin User</a></li>
 <li><a class="reference internal" href="#testing">Testing</a></li>
 <li><a class="reference internal" href="#updating">Updating</a></li>
