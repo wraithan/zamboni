@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Marketplace API &mdash; zamboni 0.8 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.8',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="zamboni 0.8 documentation" href="../index.html" />
+    <link rel="next" title="Django, the Good Parts" href="django.html" />
+    <link rel="prev" title="Access Control Lists" href="acl.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django.html" title="Django, the Good Parts"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="marketplace-api">
+<span id="api"></span><h1>Marketplace API<a class="headerlink" href="#marketplace-api" title="Permalink to this headline">¶</a></h1>
+<p>Before you go any further <em>please note the following</em>:</p>
+<ul class="simple">
+<li>This is currently a document in progress, prior to the API&#8217;s being written so
+don&#8217;t expect this to work. Formal API documentation will go on to <a class="reference external" href="https://developer.mozilla.org">MDN</a> when
+it&#8217;s ready.</li>
+<li>There is a seperate AMO set of APIs. You can find documentation of those on
+<a class="reference external" href="https://developer.mozilla.org/en/addons.mozilla.org_%28AMO%29_API_Developers%27_Guide">AMO api on MDN</a>.</li>
+</ul>
+<div class="section" id="overall-notes">
+<h2>Overall notes<a class="headerlink" href="#overall-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="authentication">
+<h3>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h3>
+<p>Currently only two legged OAuth authentication is supported. This is focused on
+clients who would like to create multiple apps on the app store from an end
+point.</p>
+<p>To get started you will need to get an OAuth token created in the site for you.
+For more information on creating an OAuth token, contact the <a class="reference external" href="mailto:marketplace-team&#37;&#52;&#48;mozilla&#46;org">marketplace
+team</a>, letting them know which Marketplace user account you would like to use
+for authentication. Changing this later will give problems accessing old data.</p>
+<p>Once you&#8217;ve got your token, you will need to ensure that the OAuth token is
+sent correctly in each request.</p>
+<p><em>TODO</em>: insert example and more notes on OAuth.</p>
+</div>
+<div class="section" id="errors">
+<h3>Errors<a class="headerlink" href="#errors" title="Permalink to this headline">¶</a></h3>
+<p>Marketplace will return errors as JSON with the appropriate status code.</p>
+</div>
+</div>
+<div class="section" id="data-errors">
+<h2>Data errors<a class="headerlink" href="#data-errors" title="Permalink to this headline">¶</a></h2>
+<p>If there is an error in your data, a 400 status code will be returned. There
+can be multiple errors per field. Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span>
+  <span class="s">&quot;error_message&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">&quot;manifest&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;This field is required.&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-errors">
+<h2>Other errors<a class="headerlink" href="#other-errors" title="Permalink to this headline">¶</a></h2>
+<p>The appropriate HTTP status code will be returned.</p>
+<div class="section" id="verbs">
+<h3>Verbs<a class="headerlink" href="#verbs" title="Permalink to this headline">¶</a></h3>
+<p>This follows the order of the <a class="reference external" href="https://github.com/toastdriven/django-tastypie">django-tastypie</a> REST verbs, a PUT for an update and POST for create.</p>
+</div>
+<div class="section" id="response">
+<h3>Response<a class="headerlink" href="#response" title="Permalink to this headline">¶</a></h3>
+<p>All responses are in JSON.</p>
+</div>
+</div>
+<div class="section" id="adding-an-app-to-the-marketplace">
+<h2>Adding an app to the Marketplace<a class="headerlink" href="#adding-an-app-to-the-marketplace" title="Permalink to this headline">¶</a></h2>
+<p>Adding an app follows a few steps, roughly analgous to the flow in a browser.
+Basically, validate your app, add it in, update it with the various data and
+then request review.</p>
+</div>
+<div class="section" id="validate">
+<h2>Validate<a class="headerlink" href="#validate" title="Permalink to this headline">¶</a></h2>
+<p>To validate an app:</p>
+<div class="highlight-python"><pre>POST /en-US/api/apps/validation/</pre>
+</div>
+<p>Body data should contain the manifest in JSON:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;manifest&quot;</span><span class="p">:</span> <span class="s">&quot;http://test.app.com/manifest&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Validations are done async on the marketplace. The call will return immediately
+with a status of 201:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">,</span>
+ <span class="s">&quot;manifest&quot;</span><span class="p">:</span> <span class="s">&quot;http://foo.com&quot;</span><span class="p">,</span>
+ <span class="s">&quot;processed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/validation/123/&quot;</span><span class="p">,</span>
+ <span class="s">&quot;valid&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s">&quot;validation&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>To see how it&#8217;s doing, poll for a result using the <cite>resource_uri</cite>:</p>
+<div class="highlight-python"><pre>GET /en-US/api/apps/validation/123/</pre>
+</div>
+<p>This will return the status of the validation. Validation not processed yet:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">,</span>
+ <span class="s">&quot;processed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/validation/123/&quot;</span><span class="p">,</span>
+ <span class="s">&quot;valid&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s">&quot;validation&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Validation processed and good:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">,</span>
+ <span class="s">&quot;processed&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+ <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/validation/123/&quot;</span><span class="p">,</span>
+ <span class="s">&quot;valid&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+ <span class="s">&quot;validation&quot;</span><span class="p">:</span> <span class="s">&quot;&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Validation processed and an error:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">,</span>
+ <span class="s">&quot;processed&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span>
+ <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/validation/123/&quot;</span><span class="p">,</span>
+ <span class="s">&quot;valid&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s">&quot;validation&quot;</span><span class="p">:</span> <span class="p">{</span>
+   <span class="s">&quot;errors&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[{</span>
+     <span class="s">&quot;tier&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="s">&quot;message&quot;</span><span class="p">:</span> <span class="s">&quot;Your manifest must be served with the HTTP header </span><span class="se">\&quot;</span><span class="s">Content-Type: application/x-web-app-manifest+json</span><span class="se">\&quot;</span><span class="s">. We saw </span><span class="se">\&quot;</span><span class="s">text/html; charset=utf-8</span><span class="se">\&quot;</span><span class="s">.&quot;</span><span class="p">,</span>
+     <span class="s">&quot;type&quot;</span><span class="p">:</span> <span class="s">&quot;error&quot;</span>
+   <span class="p">}],</span>
+<span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="create">
+<h2>Create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h2>
+<p>This requires a successfully validated manifest. To create an app with your
+validated manifest:</p>
+<div class="highlight-python"><pre>POST /en-US/api/apps/</pre>
+</div>
+<p>Body data should contain the manifest id from the validate call and other data
+in JSON:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;manifest_id&quot;</span><span class="p">:</span> <span class="s">&quot;123&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>If the creation succeeded you&#8217;ll get a 201 status back. This will return the id
+of the app on the marketplace as a slug. The marketplace will complete some of
+the data using the manifest and return values so far:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;categories&quot;</span><span class="p">:</span> <span class="p">[],</span>
+ <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s">&quot;device_types&quot;</span><span class="p">:</span> <span class="p">[],</span>
+ <span class="s">&quot;homepage&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+ <span class="s">&quot;manifest&quot;</span><span class="p">:</span> <span class="s">&quot;0a650e5e4c434b5cb60c5495c0d88a89&quot;</span><span class="p">,</span>
+ <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;MozillaBall&quot;</span><span class="p">,</span>
+ <span class="s">&quot;premium_type&quot;</span><span class="p">:</span> <span class="s">&quot;free&quot;</span><span class="p">,</span>
+ <span class="s">&quot;privacy_policy&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/app/1/&quot;</span><span class="p">,</span>
+ <span class="s">&quot;slug&quot;</span><span class="p">:</span> <span class="s">&quot;mozillaball&quot;</span><span class="p">,</span>
+ <span class="s">&quot;status&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+ <span class="s">&quot;summary&quot;</span><span class="p">:</span> <span class="s">&quot;Exciting Open Web development action!&quot;</span><span class="p">,</span>
+ <span class="s">&quot;support_email&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+ <span class="s">&quot;support_url&quot;</span><span class="p">:</span> <span class="n">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Fields:</p>
+<ul class="simple">
+<li>manifest_id (required): the id of the manifest returned from verfication.</li>
+</ul>
+</div>
+<div class="section" id="update">
+<h2>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h2>
+<p>Updates an app:</p>
+<div class="highlight-python"><pre>PUT /en-US/apps/app/&lt;app id&gt;/</pre>
+</div>
+<p>The body contains JSON for the data to be posted.</p>
+<p>These are the fields for the creation and update of an app. These will be
+populated from the manifest if specified in the manifest. Will return a 202
+status if the app was successfully updated.</p>
+<p>Fields:</p>
+<ul class="simple">
+<li>name (required): the title of the app. Maximum length 127 characters.</li>
+<li>summary (required): the summary of the app. Maximum length 255 characters.</li>
+<li>categories (required): a list of the categories, at least two of the
+category ids provided from the category api (see below).</li>
+<li>description (optional): long description. Some HTML supported.</li>
+<li>privacy_policy (required): your privacy policy. Some HTML supported.</li>
+<li>homepage (optional): a URL to your apps homepage.</li>
+<li>support_url (optional): a URL to your support homepage.</li>
+<li>support_email (required): the email address for support.</li>
+<li>device_types (required): a list of the device types at least one of:
+&#8216;desktop&#8217;, &#8216;phone&#8217;, &#8216;tablet&#8217;.</li>
+<li>payment_type (required): only choice at this time is &#8216;free&#8217;.</li>
+</ul>
+<p>Example body data:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;privacy_policy&quot;</span><span class="p">:</span> <span class="s">&quot;wat&quot;</span><span class="p">,</span>
+ <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;mozball&quot;</span><span class="p">,</span>
+ <span class="s">&quot;device_types&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;desktop-1&quot;</span><span class="p">],</span>
+ <span class="s">&quot;summary&quot;</span><span class="p">:</span> <span class="s">&quot;wat...&quot;</span><span class="p">,</span>
+ <span class="s">&quot;support_email&quot;</span><span class="p">:</span> <span class="s">&quot;a@a.com&quot;</span><span class="p">,</span>
+ <span class="s">&quot;categories&quot;</span><span class="p">:</span> <span class="p">[</span><span class="il">1L</span><span class="p">,</span> <span class="il">2L</span><span class="p">]</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p><em>TODO</em>: should screenshot re-ordering be added here.</p>
+</div>
+<div class="section" id="status">
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this headline">¶</a></h2>
+<p>To view details of an app, including its review status:</p>
+<div class="highlight-python"><pre>GET /api/apps/&lt;slug&gt;</pre>
+</div>
+<p>Returns the status of the app:</p>
+<div class="highlight-python"><pre>{"slug": "your-test-app",
+ "name": "My cool app",
+ "screenshots": [1 , 2, 3]
+ ...}</pre>
+</div>
+</div>
+<div class="section" id="delete">
+<h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
+<p>Deletes an app:</p>
+<div class="highlight-python"><pre>DELETE /api/apps/&lt;slug&gt;</pre>
+</div>
+<p>The app will only be hard deleted if it is incomplete. Otherwise it will be
+soft deleted. A soft deleted app will not appear publicly in any listings
+pages, but it will remain so that receipts, purchasing and other components
+work.</p>
+</div>
+<div class="section" id="categories">
+<h2>Categories<a class="headerlink" href="#categories" title="Permalink to this headline">¶</a></h2>
+<p>To find a list of categories available on the marketplace:</p>
+<div class="highlight-python"><pre>GET /en-US/api/categories/</pre>
+</div>
+<p>Returns the list of categories:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;meta&quot;</span><span class="p">:</span>
+    <span class="p">{</span><span class="s">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s">&quot;next&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s">&quot;offset&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+     <span class="s">&quot;previous&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s">&quot;total_count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+ <span class="s">&quot;objects&quot;</span><span class="p">:</span>
+    <span class="p">[{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&quot;name&quot;</span><span class="p">:</span> <span class="s">&quot;Webapp&quot;</span><span class="p">,</span>
+      <span class="s">&quot;resource_uri&quot;</span><span class="p">:</span> <span class="s">&quot;/en-US/api/apps/category/1/&quot;</span><span class="p">}]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Use the <cite>id</cite> of the category in your app updating.</p>
+</div>
+<div class="section" id="screenshots-or-video">
+<h2>Screenshots or video<a class="headerlink" href="#screenshots-or-video" title="Permalink to this headline">¶</a></h2>
+<p>These can be added as seperate API calls. There are limits in the marketplace
+for what screenshots and videos can be accepted.</p>
+</div>
+<div class="section" id="id1">
+<h2>Create<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Create a screenshot or video:</p>
+<div class="highlight-python"><pre>PUT /api/apps/&lt;slug&gt;/screenshot</pre>
+</div>
+<p>The body should contain the screenshot or video to be uploaded.</p>
+<p>This will return a 201 if the screenshot or video is successfully created. If
+not we&#8217;ll return the reason for the error.</p>
+<p>Returns the screenshot id:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{</span><span class="s">&quot;id&quot;</span><span class="p">:</span> <span class="s">&quot;12&quot;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Update<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Update a screenshot or video:</p>
+<div class="highlight-python"><pre>POST /api/apps/&lt;slug&gt;/screenshot/&lt;id&gt;</pre>
+</div>
+<p>This will return a 200 if the screenshot or video is succesfully updated.</p>
+</div>
+<div class="section" id="id3">
+<h2>Delete<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Delete a screenshot of video:</p>
+<div class="highlight-python"><pre>DELETE /api/apps/&lt;slug&gt;/screenshot/&lt;id&gt;</pre>
+</div>
+<p>This will return a 200 if the screenshot has been deleted.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Marketplace API</a><ul>
+<li><a class="reference internal" href="#overall-notes">Overall notes</a><ul>
+<li><a class="reference internal" href="#authentication">Authentication</a></li>
+<li><a class="reference internal" href="#errors">Errors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#data-errors">Data errors</a></li>
+<li><a class="reference internal" href="#other-errors">Other errors</a><ul>
+<li><a class="reference internal" href="#verbs">Verbs</a></li>
+<li><a class="reference internal" href="#response">Response</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-an-app-to-the-marketplace">Adding an app to the Marketplace</a></li>
+<li><a class="reference internal" href="#validate">Validate</a></li>
+<li><a class="reference internal" href="#create">Create</a></li>
+<li><a class="reference internal" href="#update">Update</a></li>
+<li><a class="reference internal" href="#status">Status</a></li>
+<li><a class="reference internal" href="#delete">Delete</a></li>
+<li><a class="reference internal" href="#categories">Categories</a></li>
+<li><a class="reference internal" href="#screenshots-or-video">Screenshots or video</a></li>
+<li><a class="reference internal" href="#id1">Create</a></li>
+<li><a class="reference internal" href="#id2">Update</a></li>
+<li><a class="reference internal" href="#id3">Delete</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="acl.html"
+                        title="previous chapter">Access Control Lists</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="django.html"
+                        title="next chapter">Django, the Good Parts</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/topics/api.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="django.html" title="Django, the Good Parts"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="acl.html" title="Access Control Lists"
+             >previous</a> |</li>
+        <li><a href="../index.html">zamboni 0.8 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009, The Zamboni Collective.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

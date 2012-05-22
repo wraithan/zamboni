@@ -368,6 +368,9 @@ find your user record:</p>
 <p>Then make yourself a superuser like this:</p>
 <div class="highlight-python"><pre>mysql&gt; update auth_user set is_superuser=1, is_staff=1 where id=&lt;id from above&gt;;</pre>
 </div>
+<p>Additionally, add yourself to the admin group:</p>
+<div class="highlight-python"><pre>mysql&gt; insert into groups_users (group_id, user_id) values (1, &lt;id from above&gt;);</pre>
+</div>
 <p>Next, you&#8217;ll need to set a password. Do that by clicking &#8220;I forgot my password&#8221;
 on the login screen then go back to the shell you started your dev server in.
 You&#8217;ll see the email message with the password reset link in stdout.</p>
