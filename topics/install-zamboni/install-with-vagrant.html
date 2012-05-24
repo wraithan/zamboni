@@ -81,12 +81,15 @@ run <tt class="docutils literal"><span class="pre">brew</span> <span class="pre"
 <li>The desktop installer walks you through it.</li>
 </ul>
 </li>
-<li><a class="reference external" href="http://vagrantup.com/">vagrant</a> 0.8.10 (not 0.9.*)<ul>
+<li><a class="reference external" href="http://vagrantup.com/">vagrant</a> 1.0 or greater.<ul>
 <li>gem is included with Mac OS X. Otherwise you may need to install
 <a class="reference external" href="http://www.ruby-lang.org/">Ruby</a> and <a class="reference external" href="http://rubygems.org/">gem</a>.</li>
 <li>If it&#8217;s your first time using Ruby you should probably run
 <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">gem</span> <span class="pre">update</span> <span class="pre">--system</span></tt></li>
-<li>To install vagrant 0.8 run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">gem</span> <span class="pre">install</span> <span class="pre">vagrant</span> <span class="pre">-v</span> <span class="pre">'=</span> <span class="pre">0.8.10'</span></tt></li>
+<li>If you run into vagrant bugs, you could try downgrading to 0.8.
+You&#8217;ll have to edit a line in the Vagrantfile which is commented out for that
+to work though.
+To install vagrant 0.8 run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">gem</span> <span class="pre">install</span> <span class="pre">vagrant</span> <span class="pre">-v</span> <span class="pre">'=</span> <span class="pre">0.8.10'</span></tt></li>
 </ul>
 </li>
 </ul>
@@ -178,15 +181,6 @@ Your <tt class="docutils literal"><span class="pre">custom.pp</span></tt> file i
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<p>If you&#8217;re using vagrant 0.9 you need to downgrade to 0.8.10 because of
-<a class="reference external" href="https://github.com/mitchellh/vagrant/issues/516">this bug</a>.</p>
-<p>You might see an error like this when first running vagrant:</p>
-<div class="highlight-python"><pre>/Library/Ruby/Gems/1.8/gems/net-ssh-2.1.4/lib/net/ssh/key_factory.rb:38:in `read': Permission denied - /Library/Ruby/Gems/1.8/gems/vagrant-0.8.</pre>
-</div>
-<p>It was fixed in <a class="reference external" href="https://github.com/mitchellh/vagrant/issues/580">issue 580</a>
-but until we can run vagrant 0.9 you can fix it with this:</p>
-<div class="highlight-python"><pre>sudo chmod 644 /Library/Ruby/Gems/1.8/gems/vagrant-0.8.10/keys/vagrant</pre>
-</div>
 <p>If you have already set up Zamboni with a custom <tt class="docutils literal"><span class="pre">settings_local.py</span></tt> file
 then be sure your database credentials match the defaults:</p>
 <div class="highlight-python"><pre>'NAME': 'zamboni',
@@ -195,6 +189,17 @@ then be sure your database credentials match the defaults:</p>
 ...</pre>
 </div>
 <p>Otherwise you&#8217;ll probably see database errors.</p>
+<p>If you have redis problems, they were fixed in
+<a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=736673">bug 736673</a>
+but be sure your settings point to the right redis connection.</p>
+<p>If you&#8217;re using vagrant 0.8,
+you might see an error like this when first running vagrant:</p>
+<div class="highlight-python"><pre>/Library/Ruby/Gems/1.8/gems/net-ssh-2.1.4/lib/net/ssh/key_factory.rb:38:in `read': Permission denied - /Library/Ruby/Gems/1.8/gems/vagrant-0.8.</pre>
+</div>
+<p>It was fixed in <a class="reference external" href="https://github.com/mitchellh/vagrant/issues/580">issue 580</a>
+but you can fix it with this:</p>
+<div class="highlight-python"><pre>sudo chmod 644 /Library/Ruby/Gems/1.8/gems/vagrant-0.8.10/keys/vagrant</pre>
+</div>
 </div>
 </div>
 
