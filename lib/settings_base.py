@@ -1199,13 +1199,6 @@ RECAPTCHA_AJAX_URL = 'https://www.google.com/recaptcha/api/js/recaptcha_ajax.js'
 # Send Django signals asynchronously on a background thread.
 ASYNC_SIGNALS = True
 
-# Performance notes on add-ons
-PERFORMANCE_NOTES = False
-
-# Used to flag slow addons.
-# If slowness of addon is THRESHOLD percent slower, show a warning.
-PERF_THRESHOLD = 25
-
 REDIS_BACKENDS = {'master': 'redis://localhost:6379?socket_timeout=0.5'}
 
 # Directory of JavaScript test files for django_qunit to run

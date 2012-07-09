@@ -520,22 +520,6 @@ class APITest(TestCase):
         eq_(result.attr('average'), '5.21')
         eq_(result.attr('baseline'), '1.2')
 
-    @patch.object(settings, 'PERF_THRESHOLD', 335)
-    def test_performance_threshold_false(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        eq_(result.attr('above_threshold'), 'false')
-
-    @patch.object(settings, 'PERF_THRESHOLD', 332)
-    def test_performance_threshold_true(self):
-        response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
-                                   api.CURRENT_VERSION)
-        doc = pq(response.content)
-        result = doc('performance application platform result').eq(0)
-        eq_(result.attr('above_threshold'), 'true')
-
     @patch.object(Addon, 'is_disabled', lambda self: True)
     def test_disabled_addon(self):
         response = self.client.get('/en-US/firefox/api/%.1f/addon/3615' %
