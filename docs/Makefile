@@ -6,11 +6,12 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
 BUILDDIR      = _build
-
+APIBUILDDIR   = api/_build
 # Internal variables.
-PAPEROPT_a4     = -D latex_paper_size=a4
-PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+PAPEROPT_a4      = -D latex_paper_size=a4
+PAPEROPT_letter  = -D latex_paper_size=letter
+ALLSPHINXOPTS    = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
+APIALLSPHINXOPTS = -d $(APIBUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html dirhtml pickle json htmlhelp qthelp latex changes linkcheck doctest
 
@@ -18,6 +19,7 @@ help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  loop      to continuously run \`make html\` when sources change"
 	@echo "  html      to make standalone HTML files"
+	@echo "  htmlapi  to make standalone HTML files for the API docs"
 	@echo "  dirhtml   to make HTML files named index.html in directories"
 	@echo "  pickle    to make pickle files"
 	@echo "  json      to make JSON files"
@@ -38,6 +40,11 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+
+htmlapi:
+	$(SPHINXBUILD) -c api -b html $(APIALLSPHINXOPTS) $(APIBUILDDIR)/html
+	@echo
+	@echo "Build finished. The HTML pages are in $(APIBUILDDIR)/html."
 
 dirhtml:
 	$(SPHINXBUILD) -b dirhtml $(ALLSPHINXOPTS) $(BUILDDIR)/dirhtml
