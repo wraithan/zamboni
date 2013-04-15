@@ -1,9 +1,10 @@
-import sys, os
+import sys
+import os
 sys.path.append(os.path.abspath('../..'))
-from docs.conf import *
+from docs.conf import *  # noqa
 
 
-master_doc = 'api/index'
+master_doc = 'index'
 
 project = u'marketplace-api'
 version = release = '1.0'  # Should correspond to the API version number
